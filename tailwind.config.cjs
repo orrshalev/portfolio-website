@@ -22,8 +22,13 @@ module.exports = {
           opensans: ["Open Sans", "sans-serif"],
       },
       content: {
-        brush: "url('/src/assets/brush.png')",
+        brush: "url('/assets/brush.png')",
       }
+    },
+    screens: {
+      xs: "480px",
+      sm: "768px",
+      md: "1060px",
     },
   },
   plugins: [],
