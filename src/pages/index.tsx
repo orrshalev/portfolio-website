@@ -4,6 +4,7 @@ import useMediaQuery from "../hooks/useMediaQuery";
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import DotGroup from "../components/DotGroup";
+import Landing from "../scenes/Landing";
 
 export const AnchorNames = ["Home", "Skills", "Contact"] as const;
 
@@ -33,8 +34,8 @@ const Home: NextPage = () => {
         setSelectedPage={setSelectedPage}
       />
       <DotGroup selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#371c5e] to-[#ff6637]">
-        <h1 className={`font-opensans font-semibold`}> hello world </h1>
+      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#5E1C59] to-[#ff6637]">
+        <Landing setSelectedPage={setSelectedPage}/>
       </main>
     </>
   );

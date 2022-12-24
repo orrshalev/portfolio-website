@@ -39,7 +39,7 @@ type NavbarProps = {
 const ScrollLinks = ({ selectedPage, setSelectedPage }: ScrollLinkProps) => {
   return AnchorNames.map((page) => (
     <ScrollLink
-      key={page}
+      key={page.toLowerCase()}
       page={page}
       selectedPage={selectedPage}
       setSelectedPage={setSelectedPage}
@@ -57,9 +57,9 @@ const Navbar = ({
   const topColor = isTopOfPage ? "" : "bg-red";
 
   return (
-    <nav className={`fixed top-0 z-40 w-full py-6`}>
+    <nav className={`fixed top-0 z-40 w-full py-6 duration-150 ease-in-out ${topColor}`}>
       <div
-        className={`mx-auto flex w-5/6 items-center justify-between ${topColor}`}
+        className={`mx-auto flex w-5/6 items-center justify-between`}
       >
         <h4 className={`font-playfair text-3xl font-bold`}>ORR</h4>
 
