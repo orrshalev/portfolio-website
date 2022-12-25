@@ -14,8 +14,8 @@ module.exports = {
         "opaque-black": "rgba(0, 0, 0, 0.35)",
       },
       backgroundImage: (theme) => ({
-        "gradient-rainbow": "linear-gradient(81.66deg, #00B5EE 7.21%, #FF45A4 45.05%, #FFBA00 78.07%)",
-        "gradient-rainblue": "linear-gradient(81.66deg, #DBC22A 7.21%, #3AF268 45.05%, #5E1C59 78.07%)",
+        "gradient-rainbow": "linear-gradient(81.66deg, #5E1C59 7.21%, #DBC22A 78.07%)",
+        "gradient-rainblue": "linear-gradient(81.66deg, #DBC22A 7.21%, #5E1C59 78.07%)",
       }),
       fontFamily: {
           playfair: ["Playfair Display", "serif"],

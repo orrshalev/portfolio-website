@@ -1,10 +1,13 @@
 import { type NextPage } from "next";
+import LineGradient from "../components/LineGradient";
 import Head from "next/head";
 import useMediaQuery from "../hooks/useMediaQuery";
 import { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
-import DotGroup from "../components/DotGroup";
+import Navbar from "../scenes/Navbar";
+import DotGroup from "../scenes/DotGroup";
 import Landing from "../scenes/Landing";
+import SocialMediaIcons from "../components/SocialMediaIcons";
+import MySkills from "../scenes/MySkills";
 
 export const AnchorNames = ["Home", "Skills", "Contact"] as const;
 
@@ -36,6 +39,11 @@ const Home: NextPage = () => {
       <DotGroup selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#5E1C59] to-[#ff6637]">
         <Landing setSelectedPage={setSelectedPage}/>
+        <SocialMediaIcons />
+        <LineGradient width="w-2/3" />
+        <div className={`w-5/6 mx-auto md:h-full`}>
+          <MySkills />
+        </div>
       </main>
     </>
   );

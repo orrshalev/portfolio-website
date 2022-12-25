@@ -23,7 +23,6 @@ const ScrollLink = ({
       } transition duration-500 hover:text-yellow`}
       href={`#${lowerCasePage}`}
       onClick={() => setSelectedPage(lowerCasePage)}
-      id={lowerCasePage}
     >
       {page}
     </AnchorLink>

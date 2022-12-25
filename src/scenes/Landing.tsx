@@ -10,7 +10,7 @@ const Landing = ({ setSelectedPage }: Props) => {
   const isAboveMediumScreens = useMediaQuery("(min-width: 1060px)");
   return (
     <section
-      id=""
+      id="home"
       className={`gap-16 py-10 md:flex md:h-full md:items-center md:justify-between`}
     >
       {/* IMAGE SECTION */}
@@ -19,7 +19,7 @@ const Landing = ({ setSelectedPage }: Props) => {
       >
         {isAboveMediumScreens ? (
           <div
-            className={`before:max-w-[400px]\ relative z-0
+            className={`before:max-w-[400px] relative z-0
         ml-20 before:absolute before:-left-20
         before:-top-20 before:z-[-1] before:h-full
         before:w-full before:rounded-t-[400px] before:border-2 before:border-blue`}
@@ -82,7 +82,7 @@ const Landing = ({ setSelectedPage }: Props) => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
           variants={{
             hidden: { opacity: 0, x: -50 },
             visible: { opacity: 1, x: 0 },
@@ -98,7 +98,7 @@ const Landing = ({ setSelectedPage }: Props) => {
             Contact Me
           </AnchorLink>
           <AnchorLink
-            className={`rounded-r-sm bg-gradient-rainblue py-0.5 pr-0.5`}
+            className={`rounded-r-sm bg-gradient-rainbow py-0.5 pr-0.5`}
             onClick={() => setSelectedPage("")}
             href="#"
           >
