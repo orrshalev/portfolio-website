@@ -53,7 +53,7 @@ const Navbar = ({
 }: NavbarProps) => {
   const [isMenuToggled, setIsMenuToggled] = useState(false);
   const isAboveSmallScreens = useMediaQuery("(min-width: 768px)");
-  const topColor = isTopOfPage ? "" : "bg-red";
+  const topColor = isTopOfPage ? "" : "bg-orange";
 
   return (
     <nav className={`fixed top-0 z-40 w-full py-6 duration-150 ease-in-out ${topColor}`}>

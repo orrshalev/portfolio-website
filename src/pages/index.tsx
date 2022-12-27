@@ -8,8 +8,10 @@ import DotGroup from "../scenes/DotGroup";
 import Landing from "../scenes/Landing";
 import SocialMediaIcons from "../components/SocialMediaIcons";
 import MySkills from "../scenes/MySkills";
+import Contact from "../scenes/Contact";
+import Footer from "../scenes/Footer";
 
-export const AnchorNames = ["Home", "Skills", "Contact"] as const;
+export const AnchorNames = ["Home", "Skills", "Projects", "Contact"] as const;
 
 const Home: NextPage = () => {
   const [selectedPage, setSelectedPage] = useState("home");
@@ -43,6 +45,13 @@ const Home: NextPage = () => {
         <LineGradient width="w-2/3" />
         <div className={`w-5/6 mx-auto md:h-full`}>
           <MySkills />
+        </div>
+
+        <div className={`w-5/6 mx-auto md:h-full`}>
+          <Contact />
+        </div>
+        <div className={`w-full mx-auto md:h-full`}>
+          <Footer />
         </div>
       </main>
     </>
