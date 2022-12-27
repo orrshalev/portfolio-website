@@ -3,12 +3,15 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 
-import type { FormEvent } from "react";
+import type { FormEvent} from "react";
+import { useEffect } from "react";
 import React from "react";
+import { useRef } from "react";
+import useIsInViewport from "../hooks/useIsInViewport";
 
-// type Props = {}
+type Props = { isInViewport: (inViewport: boolean) => void};
 
-const Contact = () => {
+const Contact = ({ isInViewport }: Props) => {
   const {
     register,
     trigger,
@@ -22,8 +25,15 @@ const Contact = () => {
     }
   };
 
+  const contactRef = useRef(null);
+  const inViewport = useIsInViewport(contactRef);
+
+  useEffect(() => {
+    console.log("inViewport", inViewport);
+  }, [inViewport, isInViewport]);
+
   return (
-    <section id="contact" className={`py-48`}>
+    <section ref={contactRef} id="contact" className={`py-48`}>
       {/* HEADINGS */}
       <motion.div
         initial="hidden"
@@ -46,32 +56,32 @@ const Contact = () => {
       </motion.div>
 
       {/* FORM & IMAGE */}
-        <motion.div
-          className={`flex items-center flex-col md:flex-row justify-center gap-16`}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5 }}
-          variants={{
-            hidden: { opacity: 0, y: 50 },
-            visible: { opacity: 1, y: 0 },
-          }}
+      <motion.div
+        className={`flex flex-col items-center justify-center gap-16 md:flex-row`}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.5 }}
+        variants={{
+          hidden: { opacity: 0, y: 50 },
+          visible: { opacity: 1, y: 0 },
+        }}
+      >
+        <Image
+          className={`just flex basis-1/2`}
+          src="/assets/contact-me.png"
+          width={300}
+          height={300}
+          alt="contact"
+        />
+        <form
+          className={`w-full basis-1/2`}
+          target="_blank"
+          onSubmit={onSubmit}
+          action="https://formsubmit.co/shalev.orr@gmail.com"
+          method="POST"
         >
-          <Image
-            className={`flex basis-1/2 just`}
-            src="/assets/contact-me.png"
-            width={300}
-            height={300}
-            alt="contact"
-          />
-          <form
-            className={`basis-1/2 w-full`}
-            target="_blank"
-            onSubmit={onSubmit}
-            action="https://formsubmit.co/shalev.orr@gmail.com"
-            method="POST"
-          >
-            <div className={`flex flex-col gap-2`}>
+          <div className={`flex flex-col gap-2`}>
             <input
               className={`w-full bg-yellow p-3 font-semibold placeholder-opaque-black`}
               type="text"
@@ -121,16 +131,16 @@ const Contact = () => {
                   "Max length is 3000 characters."}
               </p>
             )}
-            </div>
+          </div>
 
-            <button
-              type="submit"
-              className={`mt-5 bg-yellow mx-auto flex p-5 font-semibold text-deep-blue transition duration-500 hover:bg-red hover:text-white`}
-            >
-              SEND A MESSAGE
-            </button>
-          </form>
-        </motion.div>
+          <button
+            type="submit"
+            className={`mx-auto mt-5 flex bg-yellow p-5 font-semibold text-deep-blue transition duration-500 hover:bg-red hover:text-white`}
+          >
+            SEND A MESSAGE
+          </button>
+        </form>
+      </motion.div>
     </section>
   );
 };
