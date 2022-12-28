@@ -1,5 +1,5 @@
 import type React from "react";
-import { useState, useEffect, useMemo, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const useIsInViewport = (ref: React.RefObject<HTMLElement>) => {
   const [inViewport, setInViewport] = useState(false);

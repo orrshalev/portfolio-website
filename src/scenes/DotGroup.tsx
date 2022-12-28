@@ -4,7 +4,7 @@ import { AnchorNames } from "../pages";
 type DotGroupProps = {
   selectedPage: string;
   setSelectedPage: (page: string) => void;
-  setCanChange: (condition: boolean) => void
+  setCanChange: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const timeToWait = 1000;

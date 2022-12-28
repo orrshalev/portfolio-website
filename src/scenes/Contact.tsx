@@ -85,7 +85,7 @@ const Contact = ({isInViewport}: Props) => {
           >
             <div className={`flex flex-col gap-2`}>
             <input
-              className={`w-full bg-yellow p-3 font-semibold placeholder-opaque-black`}
+              className={`w-full text-black rounded-md bg-yellow p-3 font-semibold placeholder-opaque-black`}
               type="text"
               placeholder="NAME"
               {...register("name", {
@@ -102,7 +102,7 @@ const Contact = ({isInViewport}: Props) => {
             )}
 
             <input
-              className={`w-full bg-yellow p-3 font-semibold placeholder-opaque-black`}
+              className={`w-full text-black rounded-md bg-yellow p-3 font-semibold placeholder-opaque-black`}
               type="text"
               placeholder="EMAIL"
               {...register("email", {
@@ -118,7 +118,7 @@ const Contact = ({isInViewport}: Props) => {
             )}
 
             <textarea
-              className={`w-full bg-yellow p-3 font-semibold placeholder-opaque-black`}
+              className={`w-full text-black bg-yellow rounded-md px-3 pt-3 pb-10 font-semibold placeholder-opaque-black`}
               placeholder="MESSAGE"
               {...register("message", {
                 required: true,
@@ -137,7 +137,7 @@ const Contact = ({isInViewport}: Props) => {
 
             <button
               type="submit"
-              className={`mt-5 bg-yellow mx-auto flex p-5 font-semibold text-deep-blue transition duration-500 hover:bg-red hover:text-white`}
+              className={`mt-5 rounded-sm bg-yellow mx-auto flex p-5 font-semibold text-deep-blue transition duration-500 hover:bg-red hover:text-white`}
             >
               SEND A MESSAGE
             </button>

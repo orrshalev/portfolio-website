@@ -1,7 +1,7 @@
 import { type NextPage } from "next";
 import LineGradient from "../components/LineGradient";
 import Head from "next/head";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, } from "react";
 import Navbar from "../scenes/Navbar";
 import DotGroup from "../scenes/DotGroup";
 import Landing from "../scenes/Landing";
@@ -77,9 +77,10 @@ const Home: NextPage = () => {
         isTopOfPage={isTopOfPage}
         selectedPage={selectedPage}
         setSelectedPage={setSelectedPage}
+        setCanChange={setCanChange}
       />
       <DotGroup
-        setCanChange={inViewportHandle(setCanChange)}
+        setCanChange={setCanChange}
         selectedPage={selectedPage}
         setSelectedPage={setSelectedPage}
       />
@@ -91,11 +92,11 @@ const Home: NextPage = () => {
         <SocialMediaIcons />
         <LineGradient width="w-2/3" />
         <div className={`mx-auto w-5/6 md:h-full`}>
-          <MySkills isInViewport={inViewportHandle(setIsInSkills)} />
+          <MySkills isInViewport={setIsInSkills} />
         </div>
 
         <div className={`mx-auto w-5/6 md:h-full`}>
-          <Contact isInViewport={inViewportHandle(setIsInCotact)} />
+          <Contact isInViewport={setIsInCotact} />
         </div>
         <div className={`mx-auto w-full md:h-full`}>
           <Footer />
