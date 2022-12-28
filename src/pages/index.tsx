@@ -31,13 +31,15 @@ export const AnchorPrioritiesMap: AnchorOrder = {
 const Home: NextPage = () => {
   const [selectedPage, setSelectedPage] = useState("home");
   const [isTopOfPage, setIsTopOfPage] = useState(true);
+
+  const [canChange, setCanChange] = useState(true);
   const [isInHome, setIsInHome] = useState<Order>(0);
   const [isInSkills, setIsInSkills] = useState<Order>(0);
   const [isInContact, setIsInCotact] = useState<Order>(0);
 
   const inViewportHandle =
-    (setState: React.Dispatch<React.SetStateAction<Order>>) =>
-    (inViewport: Order) =>
+    <T,>(setState: React.Dispatch<React.SetStateAction<T>>) =>
+    (inViewport: T) =>
       setState(inViewport);
 
   useEffect(() => {
@@ -49,17 +51,20 @@ const Home: NextPage = () => {
   }, []);
 
   useEffect(() => {
-    const pages = [isInHome, isInSkills, isInContact].filter((val) => val !== -1) as number[];
+    if (!canChange) return;
+
+    const pages = [isInHome, isInSkills, isInContact].filter(
+      (val) => val !== -1
+    ) as number[];
     const selectedPage = Math.min(...pages);
     const selectedPageName = Object.keys(AnchorPrioritiesMap).filter((key) => {
       const page = AnchorPrioritiesMap[key as AnchorName];
       return page === selectedPage;
     })[0];
-    console.log(selectedPageName);
     if (selectedPageName) {
       setSelectedPage(selectedPageName);
     }
-  }, [isInHome, isInSkills, isInContact]);
+  }, [canChange, isInHome, isInSkills, isInContact]);
 
   return (
     <>
@@ -73,7 +78,11 @@ const Home: NextPage = () => {
         selectedPage={selectedPage}
         setSelectedPage={setSelectedPage}
       />
-      <DotGroup selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
+      <DotGroup
+        setCanChange={inViewportHandle(setCanChange)}
+        selectedPage={selectedPage}
+        setSelectedPage={setSelectedPage}
+      />
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#5E1C59] to-[#ff6637]">
         <Landing
           isInViewport={inViewportHandle(setIsInHome)}
