@@ -3,12 +3,24 @@ import Image from "next/image";
 import LineGradient from "../components/LineGradient";
 import useMediaQuery from "../hooks/useMediaQuery";
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import useIsInViewport from "../hooks/useIsInViewport";
+import type { Order} from "../pages";
+import { AnchorPrioritiesMap} from "../pages";
 
-const MySkills = () => {
+type Props = {isInViewport: (inViewport: Order) => void};
+
+const MySkills = ({isInViewport}: Props) => {
   const isAboveMediumScreens = useMediaQuery("(min-width: 1060px)");
+  const skillsRef = useRef(null);
+  const inViewport = useIsInViewport(skillsRef);
+
+  useEffect(() => {
+    inViewport ? isInViewport(AnchorPrioritiesMap.skills) : isInViewport(-1);
+  }, [isInViewport, inViewport]);
 
   return (
-    <section id="skills" className={`pt-10 pb-24`}>
+    <section ref={skillsRef} id="skills" className={`pt-10 pb-24`}>
       {/* HEADER AND IMAGE SECTION */}
       <div className={`mt-32 md:flex md:justify-between md:gap-16`}>
         <motion.div

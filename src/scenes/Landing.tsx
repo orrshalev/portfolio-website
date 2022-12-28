@@ -3,14 +3,27 @@ import Image from "next/image";
 import useMediaQuery from "../hooks/useMediaQuery";
 import { motion } from "framer-motion";
 import AnchorLink from "react-anchor-link-smooth-scroll";
+import useIsInViewport from "../hooks/useIsInViewport";
+import type { Order } from "../pages/index";
+import { AnchorPrioritiesMap } from "../pages/index";
+import { useEffect, useRef } from "react";
 
-type Props = { setSelectedPage: (page: string) => void };
+type Props = { isInViewport: (inViewport: Order) => void, setSelectedPage: (page: string) => void };
 
-const Landing = ({ setSelectedPage }: Props) => {
+const Landing = ({ isInViewport, setSelectedPage }: Props) => {
   const isAboveMediumScreens = useMediaQuery("(min-width: 1060px)");
+
+  const landingRef = useRef(null);
+  const inViewport = useIsInViewport(landingRef);
+
+  useEffect(() => {
+    inViewport ? isInViewport(AnchorPrioritiesMap.home) : isInViewport(-1);
+  }, [isInViewport, inViewport]);
+
   return (
     <section
       id="home"
+      ref={landingRef}
       className={`gap-16 py-10 md:flex md:h-full md:items-center md:justify-between`}
     >
       {/* IMAGE SECTION */}
@@ -19,10 +32,10 @@ const Landing = ({ setSelectedPage }: Props) => {
       >
         {isAboveMediumScreens ? (
           <div
-            className={`before:max-w-[400px] relative z-0
-        ml-20 before:absolute before:-left-20
-        before:-top-20 before:z-[-1] before:h-full
-        before:w-full before:rounded-t-[400px] before:border-2 before:border-blue`}
+            className={`relative z-0 ml-20
+        before:absolute before:-left-20 before:-top-20
+        before:z-[-1] before:h-full before:w-full
+        before:max-w-[400px] before:rounded-t-[400px] before:border-2 before:border-blue`}
           >
             <Image
               alt="profile"
@@ -103,7 +116,7 @@ const Landing = ({ setSelectedPage }: Props) => {
             href="#"
           >
             <div
-              className={`flex h-full w-full items-center bg-deep-blue justify-center px-10 font-playfair transition duration-500 hover:text-red`}
+              className={`flex h-full w-full items-center justify-center bg-deep-blue px-10 font-playfair transition duration-500 hover:text-red`}
             >
               Let&apos;s Talk
             </div>

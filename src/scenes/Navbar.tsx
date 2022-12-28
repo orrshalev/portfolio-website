@@ -36,14 +36,18 @@ type NavbarProps = {
 };
 
 const ScrollLinks = ({ selectedPage, setSelectedPage }: ScrollLinkProps) => {
-  return AnchorNames.map((page) => (
+  return AnchorNames.map((page) => {
+    const capitalizedPage = page.charAt(0).toUpperCase() + page.slice(1);
+    return (
     <ScrollLink
       key={page.toLowerCase()}
-      page={page}
+      page={capitalizedPage}
       selectedPage={selectedPage}
       setSelectedPage={setSelectedPage}
     />
-  ));
+    )
+  }
+  );
 };
 
 const Navbar = ({

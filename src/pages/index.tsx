@@ -1,7 +1,6 @@
 import { type NextPage } from "next";
 import LineGradient from "../components/LineGradient";
 import Head from "next/head";
-import useMediaQuery from "../hooks/useMediaQuery";
 import { useEffect, useState, useRef } from "react";
 import Navbar from "../scenes/Navbar";
 import DotGroup from "../scenes/DotGroup";
@@ -10,19 +9,35 @@ import SocialMediaIcons from "../components/SocialMediaIcons";
 import MySkills from "../scenes/MySkills";
 import Contact from "../scenes/Contact";
 import Footer from "../scenes/Footer";
-import useIsInViewport from "../hooks/useIsInViewport";
 
-export const AnchorNames = ["Home", "Skills", "Projects", "Contact"] as const;
+export const AnchorNames = ["home", "skills", "projects", "contact"] as const;
+
+type AnchorName = typeof AnchorNames[number];
+// -1 means not in viewport
+export type Order = -1 | 0 | 1 | 2 | 3;
+
+// Make type with keys from AnchorNames and values of AnchorPriorities
+type AnchorOrder = {
+  [key in AnchorName]: Order;
+};
+
+export const AnchorPrioritiesMap: AnchorOrder = {
+  home: 0,
+  skills: 1,
+  projects: 2,
+  contact: 3,
+};
 
 const Home: NextPage = () => {
   const [selectedPage, setSelectedPage] = useState("home");
   const [isTopOfPage, setIsTopOfPage] = useState(true);
-  const [isInContact, setIsInCotact] = useState(false);
-  const isAboveMediumScreens = useMediaQuery("(min-width: 1060px)");
+  const [isInHome, setIsInHome] = useState<Order>(0);
+  const [isInSkills, setIsInSkills] = useState<Order>(0);
+  const [isInContact, setIsInCotact] = useState<Order>(0);
 
   const inViewportHandle =
-    (setState: React.Dispatch<React.SetStateAction<boolean>>) =>
-    (inViewport: boolean) =>
+    (setState: React.Dispatch<React.SetStateAction<Order>>) =>
+    (inViewport: Order) =>
       setState(inViewport);
 
   useEffect(() => {
@@ -32,6 +47,19 @@ const Home: NextPage = () => {
     window.addEventListener("scroll", HandleScroll);
     return () => window.removeEventListener("scroll", HandleScroll);
   }, []);
+
+  useEffect(() => {
+    const pages = [isInHome, isInSkills, isInContact].filter((val) => val !== -1) as number[];
+    const selectedPage = Math.min(...pages);
+    const selectedPageName = Object.keys(AnchorPrioritiesMap).filter((key) => {
+      const page = AnchorPrioritiesMap[key as AnchorName];
+      return page === selectedPage;
+    })[0];
+    console.log(selectedPageName);
+    if (selectedPageName) {
+      setSelectedPage(selectedPageName);
+    }
+  }, [isInHome, isInSkills, isInContact]);
 
   return (
     <>
@@ -47,11 +75,14 @@ const Home: NextPage = () => {
       />
       <DotGroup selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
       <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#5E1C59] to-[#ff6637]">
-        <Landing setSelectedPage={setSelectedPage} />
+        <Landing
+          isInViewport={inViewportHandle(setIsInHome)}
+          setSelectedPage={setSelectedPage}
+        />
         <SocialMediaIcons />
         <LineGradient width="w-2/3" />
         <div className={`mx-auto w-5/6 md:h-full`}>
-          <MySkills />
+          <MySkills isInViewport={inViewportHandle(setIsInSkills)} />
         </div>
 
         <div className={`mx-auto w-5/6 md:h-full`}>
