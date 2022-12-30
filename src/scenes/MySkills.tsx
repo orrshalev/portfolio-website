@@ -49,13 +49,13 @@ const MySkills = ({isInViewport}: Props) => {
           {isAboveMediumScreens ? (
             <div
               className={`relative z-0 ml-20
-                          before:absolute before:-left-10 before:-top-10
-        before:z-[-1] before:h-full before:w-full
-        before:border-2 before:border-blue`}
+                          before:absolute before:-left-16 before:-top-16
+        before:z-[-1] before:h-full before:w-full before:rounded-t-[400px]
+        before:border-2 before:border-yellow`}
             >
               <Image
-                alt="skills"
-                className={`z-10`}
+                alt="Personal Image"
+                className={`z-10 rounded-t-[400px]`}
                 src="/assets/profile-image.png"
                 width={805}
                 height={644}

@@ -4,6 +4,7 @@ import useMediaQuery from "../hooks/useMediaQuery";
 import { AnchorNames } from "../pages/index";
 
 type ScrollLinkProps = {
+  isTopOfPage: boolean;
   page: string;
   selectedPage: string;
   setSelectedPage: (page: string) => void;
@@ -12,28 +13,37 @@ type ScrollLinkProps = {
 
 const timeToWait = 1000;
 function resolveAfterSeconds(timeToWait: number) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => {
-      resolve('resolved');
+      resolve("resolved");
     }, timeToWait);
   });
 }
 
 const ScrollLink = ({
+  isTopOfPage,
   page,
   selectedPage,
   setSelectedPage,
   setCanChange,
 }: ScrollLinkProps) => {
   const lowerCasePage = page.toLowerCase();
-  const change = async <T, >(func: (param: T) => void, to: T) => {
+  const change = async <T,>(func: (param: T) => void, to: T) => {
     func(to);
+  };
+  let textColor: string;
+  if (selectedPage == lowerCasePage) {
+    textColor = "text-yellow";
+  } else if (isTopOfPage) {
+    textColor = "text-black";
   }
+  else {
+    textColor = "text-white";
+  }
+
   return (
     <AnchorLink
-      className={`${
-        selectedPage === lowerCasePage ? "text-yellow" : ""
-      } transition duration-500 hover:text-yellow`}
+      className={`${textColor} hover:transition hover:duration-500 hover:text-yellow`}
       href={`#${lowerCasePage}`}
       onClick={async () => {
         change(setCanChange, false);
@@ -54,11 +64,17 @@ type NavbarProps = {
   setCanChange: (condition: boolean) => void;
 };
 
-const ScrollLinks = ({ setCanChange, selectedPage, setSelectedPage }: ScrollLinkProps) => {
+const ScrollLinks = ({
+  isTopOfPage,
+  setCanChange,
+  selectedPage,
+  setSelectedPage,
+}: ScrollLinkProps) => {
   return AnchorNames.map((page) => {
     const capitalizedPage = page.charAt(0).toUpperCase() + page.slice(1);
     return (
       <ScrollLink
+        isTopOfPage={isTopOfPage}
         key={page.toLowerCase()}
         page={capitalizedPage}
         selectedPage={selectedPage}
@@ -76,20 +92,25 @@ const Navbar = ({
   setCanChange,
 }: NavbarProps) => {
   const isAboveSmallScreens = useMediaQuery("(min-width: 768px)");
-  const topColor = isTopOfPage ? "" : "bg-orange";
+  const topColor = isTopOfPage ? "" : "bg-purple";
 
   return (
     <nav
       className={`fixed top-0 z-40 w-full py-6 duration-150 ease-in-out ${topColor}`}
     >
       <div className={`mx-auto flex w-5/6 items-center justify-between`}>
-        <h4 className={`font-playfair text-3xl font-bold`}>ORR</h4>
+        <h4 className={`font-playfair text-3xl font-bold text-yellow`}>ORR</h4>
 
         {isAboveSmallScreens ? (
           <div
             className={`flex justify-between gap-16 font-opensans text-sm font-semibold`}
           >
-            {ScrollLinks({ setCanChange, selectedPage, setSelectedPage } as ScrollLinkProps)}
+            {ScrollLinks({
+              isTopOfPage,
+              setCanChange,
+              selectedPage,
+              setSelectedPage,
+            } as ScrollLinkProps)}
           </div>
         ) : (
           <></>

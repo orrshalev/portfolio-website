@@ -1,7 +1,7 @@
 import { type NextPage } from "next";
 import LineGradient from "../components/LineGradient";
 import Head from "next/head";
-import { useEffect, useState, } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../scenes/Navbar";
 import DotGroup from "../scenes/DotGroup";
 import Landing from "../scenes/Landing";
@@ -84,11 +84,11 @@ const Home: NextPage = () => {
         selectedPage={selectedPage}
         setSelectedPage={setSelectedPage}
       />
-      <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#5E1C59] to-[#ff6637]">
-        <Landing
-          isInViewport={inViewportHandle(setIsInHome)}
-          setSelectedPage={setSelectedPage}
-        />
+      <main className="flex min-h-screen flex-col items-center justify-center bg-slate-100">
+          <Landing
+            isInViewport={setIsInHome}
+            setSelectedPage={setSelectedPage}
+          />
         <SocialMediaIcons />
         <LineGradient width="w-2/3" />
         <div className={`mx-auto w-5/6 md:h-full`}>

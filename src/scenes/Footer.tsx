@@ -5,7 +5,7 @@ import SocialMediaIcons from '../components/SocialMediaIcons'
 
 const Footer = () => {
   return (
-    <footer className={`h-64 bg-orange pt-10`}>
+    <footer className={`h-52 bg-yellow pt-6`}>
         <div className={`w-5/6  mx-auto`}>
             <SocialMediaIcons />
             <div className={`md:flex justify-center md:justify-between text-center`}>
@@ -17,4 +17,4 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export default Footer;

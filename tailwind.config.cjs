@@ -6,8 +6,9 @@ module.exports = {
     extend: {
       colors: {
         blue: "#2CBCE9",
+        purple: "#8600e6",
         red: "#DC4492",
-        yellow: "#FDCC49",
+        yellow: "#f7be22",
         grey: "#ededed",
         "deep-blue": "#010026",
         "navy-blue": "#000080",
@@ -16,12 +17,12 @@ module.exports = {
         "opaque-black": "rgba(0, 0, 0, 0.35)",
       },
       backgroundImage: (theme) => ({
-        "gradient-rainbow": "linear-gradient(81.66deg, #5E1C59 7.21%, #DBC22A 78.07%)",
-        "gradient-rainblue": "linear-gradient(81.66deg, #DBC22A 7.21%, #5E1C59 78.07%)",
+        "gradient-rainbow": "linear-gradient(81.66deg, #8600e6 7.21%, #f7be22 70.07%)",
+        "gradient-rainblue": "linear-gradient(81.66deg, #f7be22 10.21%, #8600e6 90.07%)",
       }),
       fontFamily: {
           playfair: ["Playfair Display", "serif"],
-          opensans: ["Open Sans", "sans-serif"],
+          opensans: ["Open Sans", "sans-#8600e6serif"],
       },
       content: {
         brush: "url('/assets/brush.svg')",
