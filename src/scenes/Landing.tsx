@@ -26,11 +26,15 @@ const Landing = ({ isInViewport }: Props) => {
     <section
       id="home"
       ref={landingRef}
-      className={`relative gap-16 md:flex md:h-[80vh] md:items-center md:justify-between md:w-3/5`}
+      className={`mt-36 md:mt-0 gap-16 md:flex md:h-[80vh] md:items-center md:justify-between md:w-3/5`}
     >
       {/* IMAGE SECTION */}
       <motion.div
-        className={`z-10 flex basis-3/5 justify-center md:order-2 `}
+        className={
+          `relative z-10 flex ml-14 basis-3/5  md:order-2
+          before:absolute before:h-[400px] before:bg-gradient-rainblue
+          before:rounded-full before:z-[-1] before:w-[400px] before:border-red
+          before:left-4 before:opacity-90 `}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
@@ -43,10 +47,10 @@ const Landing = ({ isInViewport }: Props) => {
           {/* Increase size of this svg */}
           <Image
             alt="bicep curling animation"
-            className={`z-10 w-full`}
+            className={`z-10 relative`}
             src="/assets/bicep.svg"
-            width={200}
-            height={250}
+            width={600}
+            height={600}
           ></Image>
         </motion.div>
 
@@ -76,7 +80,7 @@ const Landing = ({ isInViewport }: Props) => {
             </span>
           </p>
 
-          <p className={`p-4 font-opensans font-semibold`}>Powering Software One Line at a Time!</p>
+          <p className={`p-4 ml-10 md:ml-0 font-opensans font-semibold`}>Powering Software One Line at a Time!</p>
         </motion.div>
       </div>
     </section>
