@@ -9,7 +9,7 @@ const container = {
 };
 
 const projectVarient = {
-  hidden: { opacity: 0, scale: 0.8 },
+  hidden: { opacity: 0, scale: 0.7 },
   visible: { opacity: 1, scale: 1 },
 };
 
@@ -29,6 +29,8 @@ const Project = ({ title, subtitle }: { title: string; subtitle: string }) => {
       <Image
         src={`/assets/${projectTitle}.png`}
         alt={`${title} thumbnail`}
+        width={400}
+        height={400}
       ></Image>
     </motion.div>
   );
@@ -82,12 +84,12 @@ const Projects = () => {
           </div>
           <Project title="Project 1" subtitle="Lorem ipsum dolor sit amet." />
           <Project title="Project 2" subtitle="Lorem ipsum dolor sit amet." />
-        </motion.div>
-
         {/* ROW 2 */}
         <Project title="Project 3" subtitle="Lorem ipsum dolor sit amet." />
         <Project title="Project 4" subtitle="Lorem ipsum dolor sit amet." />
         <Project title="Project 5" subtitle="Lorem ipsum dolor sit amet." />
+        </motion.div>
+
       </div>
     </section>
   );

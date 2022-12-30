@@ -9,6 +9,7 @@ import SocialMediaIcons from "../components/SocialMediaIcons";
 import MySkills from "../scenes/MySkills";
 import Contact from "../scenes/Contact";
 import Footer from "../scenes/Footer";
+import Projects from "../scenes/Projects";
 
 export const AnchorNames = ["home", "skills", "projects", "contact"] as const;
 
@@ -93,6 +94,9 @@ const Home: NextPage = () => {
         <LineGradient width="w-2/3" />
         <div className={`mx-auto w-5/6 md:h-full`}>
           <MySkills isInViewport={setIsInSkills} />
+        </div>
+        <div className={`mx-auto w-5/6 md:h-full`}>
+          <Projects />
         </div>
 
         <div className={`mx-auto w-5/6 md:h-full`}>

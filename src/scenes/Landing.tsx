@@ -31,10 +31,10 @@ const Landing = ({ isInViewport }: Props) => {
       {/* IMAGE SECTION */}
       <motion.div
         className={
-          `relative z-10 flex ml-14 basis-3/5  md:order-2
-          before:absolute before:h-[400px] before:bg-gradient-rainblue
-          before:rounded-full before:z-[-1] before:w-[400px] before:border-red
-          before:left-4 before:opacity-90 `}
+          `relative z-10 flex ml-24 basis-3/5  md:order-2
+          before:absolute before:bg-gradient-rainblue
+          before:rounded-full before:mr-5 before:w-[75%] before:h-full
+          before:-left-2 before:z-[-1]  before:border-red before:opacity-90 `}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
