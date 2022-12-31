@@ -36,12 +36,8 @@ const Home: NextPage = () => {
   const [canChange, setCanChange] = useState(true);
   const [isInHome, setIsInHome] = useState<Order>(0);
   const [isInSkills, setIsInSkills] = useState<Order>(0);
+  const [isInProjects, setIsInProjects] = useState<Order>(0);
   const [isInContact, setIsInCotact] = useState<Order>(0);
-
-  const inViewportHandle =
-    <T,>(setState: React.Dispatch<React.SetStateAction<T>>) =>
-    (inViewport: T) =>
-      setState(inViewport);
 
   useEffect(() => {
     const HandleScroll = () => {
@@ -54,7 +50,7 @@ const Home: NextPage = () => {
   useEffect(() => {
     if (!canChange) return;
 
-    const pages = [isInHome, isInSkills, isInContact].filter(
+    const pages = [isInHome, isInSkills, isInProjects, isInContact].filter(
       (val) => val !== -1
     ) as number[];
     const selectedPage = Math.min(...pages);
@@ -65,7 +61,7 @@ const Home: NextPage = () => {
     if (selectedPageName) {
       setSelectedPage(selectedPageName);
     }
-  }, [canChange, isInHome, isInSkills, isInContact]);
+  }, [canChange, isInHome, isInSkills, isInProjects, isInContact]);
 
   return (
     <>
@@ -96,7 +92,7 @@ const Home: NextPage = () => {
           <MySkills isInViewport={setIsInSkills} />
         </div>
         <div className={`mx-auto w-5/6 md:h-full`}>
-          <Projects />
+          <Projects isInViewport={setIsInProjects} />
         </div>
 
         <div className={`mx-auto w-5/6 md:h-full`}>

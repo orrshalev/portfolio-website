@@ -94,7 +94,7 @@ const MySkills = ({isInViewport}: Props) => {
               </p>
             </div>
             <div
-              className={`absolute right-0 top-0 z-[-1] h-32 w-1/2 bg-blue md:w-3/4`}
+              className={`absolute right-0 top-0 z-[-1] h-32 w-1/2 bg-yellow md:w-3/4`}
             />
             <p className={`mt-8`}>
               A auctor, nisl nec tincidunt luctus, elit ipsum interdum nulla,
@@ -124,7 +124,7 @@ const MySkills = ({isInViewport}: Props) => {
               </p>
             </div>
             <div
-              className={`absolute right-0 top-0 z-[-1] h-32 w-1/2 bg-red md:w-3/4`}
+              className={`absolute right-0 top-0 z-[-1] h-32 w-1/2 bg-orange md:w-3/4`}
             />
             <p className={`mt-5`}>
               A auctor, nisl nec tincidunt luctus, elit ipsum interdum nulla,
@@ -154,7 +154,7 @@ const MySkills = ({isInViewport}: Props) => {
               </p>
             </div>
             <div
-              className={`absolute right-0 top-0 z-[-1] h-32 w-1/2 bg-yellow md:w-3/4`}
+              className={`absolute right-0 top-0 z-[-1] h-32 w-1/2 bg-purple md:w-3/4`}
             />
             <p className={`mt-5`}>
               A auctor, nisl nec tincidunt luctus, elit ipsum interdum nulla,

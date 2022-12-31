@@ -2,6 +2,10 @@ import React from "react";
 import Image from "next/image";
 import LineGradient from "../components/LineGradient";
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
+import useIsInViewport from "../hooks/useIsInViewport";
+import type { Order } from "../pages";
+import { AnchorPrioritiesMap } from "../pages";
 
 const container = {
   hidden: {},
@@ -13,32 +17,52 @@ const projectVarient = {
   visible: { opacity: 1, scale: 1 },
 };
 
-const Project = ({ title, subtitle }: { title: string; subtitle: string }) => {
+const Project = ({
+  title,
+  subtitle,
+  url,
+}: {
+  title: string;
+  subtitle: string;
+  url: string;
+}) => {
   const projectTitle = title.split(" ").join("-").toLowerCase();
 
   return (
-    <motion.div className={`relative`} variants={projectVarient}>
-      <div
-        className={`absolute z-30 flex h-full w-full 
+    <a href={url} target="_blank" rel="noreferrer">
+      <motion.div className={`relative`} variants={projectVarient}>
+        <div
+          className={`absolute z-30 flex h-full w-full 
       flex-col items-center justify-center bg-grey text-center text-deep-blue opacity-0 
       transition duration-500 hover:opacity-90`}
-      >
-        <p className={`font-playfair text-2xl`}>{title}</p>
-        <p className={`mt-7`}>{subtitle}</p>
-      </div>
-      <Image
-        src={`/assets/${projectTitle}.png`}
-        alt={`${title} thumbnail`}
-        width={400}
-        height={400}
-      ></Image>
-    </motion.div>
+        >
+          <p className={`font-playfair text-2xl`}>{title}</p>
+          <p className={`mt-7`}>{subtitle}</p>
+        </div>
+        <Image
+          src={`/assets/${projectTitle}.png`}
+          alt={`${title} thumbnail`}
+          width={400}
+          height={400}
+        ></Image>
+      </motion.div>
+    </a>
   );
 };
 
-const Projects = () => {
+type ProjectsProps = { isInViewport: (inViewport: Order) => void };
+
+const Projects = (props: ProjectsProps) => {
+  const projectsRef = useRef(null);
+  const inViewport = useIsInViewport(projectsRef);
+  const { isInViewport } = props;
+
+  useEffect(() => {
+    inViewport ? isInViewport(AnchorPrioritiesMap.projects) : isInViewport(-1);
+  }, [isInViewport, inViewport]);
+
   return (
-    <section id="projects" className={`py-48`}>
+    <section ref={projectsRef} id="projects" className={`py-48`}>
       <motion.div
         className={`mx-auto text-center md:w-2/4`}
         initial="hidden"
@@ -52,7 +76,7 @@ const Projects = () => {
       >
         <div>
           <p className={`font-playfair text-4xl font-semibold`}>
-            <span className={`text-red`}>PRO</span>JECTS
+            <span className={`text-yellow`}>MY </span>WORK
           </p>
           <div className={`mt-5 flex justify-center`}>
             <LineGradient width="w-1/3" />
@@ -77,19 +101,45 @@ const Projects = () => {
         >
           {/* ROW 1 */}
           <div
-            className={`flex max-w-[400px] items-center justify-center bg-red 
+            className={`flex max-w-[400px] items-center justify-center bg-yellow 
             p-10 text-center font-playfair text-2xl font-semibold`}
           >
             BEAUTIFUL PROJECTS THAT I MADE
           </div>
-          <Project title="Project 1" subtitle="Lorem ipsum dolor sit amet." />
-          <Project title="Project 2" subtitle="Lorem ipsum dolor sit amet." />
-        {/* ROW 2 */}
-        <Project title="Project 3" subtitle="Lorem ipsum dolor sit amet." />
-        <Project title="Project 4" subtitle="Lorem ipsum dolor sit amet." />
-        <Project title="Project 5" subtitle="Lorem ipsum dolor sit amet." />
+          <Project
+            title="Math Toolbox"
+            subtitle="Lorem ipsum dolor sit amet."
+            url="https://mathtoolbox.org"
+          />
+          <Project
+            title="VR Multiplayer Bowling Game"
+            subtitle="Lorem ipsum dolor sit amet."
+            url="https://github.com/orrshalev/vr-bowling-game"
+          />
+          {/* ROW 2 */}
+          <Project
+            title="University of Georgia Data Science Competition 2021"
+            subtitle="Lorem ipsum dolor sit amet."
+            url="https://www.stat.uga.edu/events/content/2021/uga-data-science-competition-2021"
+          />
+          <Project
+            title="Terry FinTech Society"
+            subtitle="Lorem ipsum dolor sit amet."
+            url="https://www.terryfintech.org/"
+          />
+          <Project
+            title="VR & Music Research Lab"
+            subtitle="Lorem ipsum dolor sit amet."
+            url="#" />
+          {/* <motion.div className={`relative`} variants={projectVarient}>
+            <div
+              className={`absolute flex h-full w-full items-center justify-center bg-purple 
+            p-10 text-center font-playfair text-2xl font-semibold`}
+            >
+              BOTTOM TEXT
+            </div>
+          </motion.div> */}
         </motion.div>
-
       </div>
     </section>
   );
