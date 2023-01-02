@@ -72,7 +72,6 @@ const Home: NextPage = () => {
       </Head>
       <Navbar
         isTopOfPage={isTopOfPage}
-        selectedPage={selectedPage}
         setSelectedPage={setSelectedPage}
         setCanChange={setCanChange}
       />

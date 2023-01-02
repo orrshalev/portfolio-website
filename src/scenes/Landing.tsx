@@ -1,4 +1,5 @@
 import React from "react";
+import ColorWheelAnimate from "../graphics/ColorWheel/ColorWheelAnimate";
 import Image from "next/image";
 import useMediaQuery from "../hooks/useMediaQuery";
 import { motion } from "framer-motion";
@@ -26,33 +27,28 @@ const Landing = ({ isInViewport }: Props) => {
     <section
       id="home"
       ref={landingRef}
-      className={`mt-36 md:mt-0 gap-16 md:flex md:h-[80vh] md:items-center md:justify-between md:w-3/5`}
+      className={`mt-36 gap-16 md:mt-0 md:flex md:h-[80vh] md:w-[45%] md:items-center md:justify-between`}
     >
       {/* IMAGE SECTION */}
       <motion.div
-        className={
-          `relative z-10 flex ml-24 md:order-2
-          before:absolute before:bg-gradient-rainblue
-          before:rounded-full before:mr-5 before:w-[75%] before:h-full
-          before:-left-2 before:z-[-1]  before:border-red before:opacity-90 `}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5 }}
-          variants={{
-            hidden: { opacity: 0, x: 50 },
-            visible: { opacity: 1, x: 0 },
-          }}
+        className={`relative z-10 ml-24 flex before:absolute
+          before:-left-2 before:z-[-1]
+          before:mr-5 before:h-full before:w-[75%] before:rounded-full
+          before:border-red before:bg-gradient-rainblue  before:opacity-90 md:order-2 `}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.5 }}
+        variants={{
+          hidden: { opacity: 0, x: 50 },
+          visible: { opacity: 1, x: 0 },
+        }}
       >
-          {/* Increase size of this svg */}
-          <Image
-            alt="bicep curling animation"
-            className={`z-10 relative`}
-            src="/assets/svg/bicep.svg"
-            width={600}
-            height={600}
-          ></Image>
-        </motion.div>
+        {/* Increase size of this svg */}
+        <svg height={500} >
+          <ColorWheelAnimate spinTime={10000} />
+        </svg>
+      </motion.div>
 
       {/* MAIN SECTION */}
       <div className={`z-30 mt-12 basis-2/5 md:mt-32`}>
@@ -80,7 +76,9 @@ const Landing = ({ isInViewport }: Props) => {
             </span>
           </p>
 
-          <p className={`p-4 ml-10 md:ml-0 font-opensans font-semibold`}>Powering Software One Line at a Time!</p>
+          <p className={`ml-10 p-4 font-opensans font-semibold md:ml-0`}>
+            Powering Software One Line at a Time!
+          </p>
         </motion.div>
       </div>
     </section>
