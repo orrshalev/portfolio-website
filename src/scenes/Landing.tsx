@@ -31,7 +31,7 @@ const Landing = ({ isInViewport }: Props) => {
       {/* IMAGE SECTION */}
       <motion.div
         className={
-          `relative z-10 flex ml-24 basis-3/5  md:order-2
+          `relative z-10 flex ml-24 md:order-2
           before:absolute before:bg-gradient-rainblue
           before:rounded-full before:mr-5 before:w-[75%] before:h-full
           before:-left-2 before:z-[-1]  before:border-red before:opacity-90 `}
@@ -48,7 +48,7 @@ const Landing = ({ isInViewport }: Props) => {
           <Image
             alt="bicep curling animation"
             className={`z-10 relative`}
-            src="/assets/bicep.svg"
+            src="/assets/svg/bicep.svg"
             width={600}
             height={600}
           ></Image>

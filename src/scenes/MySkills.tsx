@@ -56,7 +56,7 @@ const MySkills = ({isInViewport}: Props) => {
               <Image
                 alt="Personal Image"
                 className={`z-10 rounded-t-[400px]`}
-                src="/assets/profile-image.png"
+                src="/assets/image/profile-image.png"
                 width={805}
                 height={644}
               ></Image>
@@ -65,7 +65,7 @@ const MySkills = ({isInViewport}: Props) => {
             <Image
               alt="skills"
               className={`z-10`}
-              src="/assets/profile-image.png"
+              src="/assets/image/profile-image.png"
               width={1610}
               height={1288}
             ></Image>
@@ -90,7 +90,7 @@ const MySkills = ({isInViewport}: Props) => {
             <div className={`z-10`}>
               <p className={`font-playfair text-5xl font-semibold`}>01</p>
               <p className={`font-playfair text-3xl font-semibold`}>
-                Experience
+                Full-Stack
               </p>
             </div>
             <div
@@ -120,7 +120,7 @@ const MySkills = ({isInViewport}: Props) => {
             <div className={`z-10`}>
               <p className={`font-playfair text-5xl font-semibold`}>02</p>
               <p className={`mt-3 font-playfair text-3xl font-semibold`}>
-                Innovative
+                Data Analytics
               </p>
             </div>
             <div
@@ -150,7 +150,7 @@ const MySkills = ({isInViewport}: Props) => {
             <div className={`z-10`}>
               <p className={`font-playfair text-5xl font-semibold`}>03</p>
               <p className={`font-playfair text-3xl mt-3 font-semibold`}>
-                Creative
+                Virtual Reality
               </p>
             </div>
             <div

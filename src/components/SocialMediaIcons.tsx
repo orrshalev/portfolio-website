@@ -13,7 +13,7 @@ const SocialMediaIcons = (props: Props) => {
       >
         <Image
           alt="linkedin-link"
-          src={`/assets/linkedin.svg`}
+          src={`/assets/svg/linkedin.svg`}
           width={40}
           height={40}
         ></Image>
@@ -26,7 +26,7 @@ const SocialMediaIcons = (props: Props) => {
       >
         <Image
           alt="github-link"
-          src={`/assets/github.svg`}
+          src={`/assets/svg/github.svg`}
           width={40}
           height={40}
         ></Image>

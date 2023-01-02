@@ -25,7 +25,7 @@ module.exports = {
           opensans: ["Open Sans", "sans-#8600e6serif"],
       },
       content: {
-        brush: "url('/assets/brush.svg')",
+        brush: "url('/assets/svg/brush.svg')",
       }
     },
     screens: {

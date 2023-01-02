@@ -71,7 +71,7 @@ const Contact = ({isInViewport}: Props) => {
         >
           <Image
             className={`flex basis-1/2 just`}
-            src="/assets/contact-me.png"
+            src="/assets/image/contact-me.png"
             width={300}
             height={300}
             alt="contact"

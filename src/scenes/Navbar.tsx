@@ -1,96 +1,83 @@
 import React from "react";
-import AnchorLink from "react-anchor-link-smooth-scroll";
+import { useState } from "react";
+import Image from "next/image";
 import useMediaQuery from "../hooks/useMediaQuery";
-import { AnchorNames } from "../pages/index";
+import { motion } from "framer-motion";
 
-type ScrollLinkProps = {
-  isTopOfPage: boolean;
+type LinkProps = {
   page: string;
-  selectedPage: string;
-  setSelectedPage: (page: string) => void;
-  setCanChange: (condition: boolean) => void;
+  url: string;
+  iconName: string;
+  marginLeft: string;
+  isTopOfPage: boolean;
 };
 
-const timeToWait = 1000;
-function resolveAfterSeconds(timeToWait: number) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve("resolved");
-    }, timeToWait);
-  });
-}
-
-const ScrollLink = ({
-  isTopOfPage,
-  page,
-  selectedPage,
-  setSelectedPage,
-  setCanChange,
-}: ScrollLinkProps) => {
-  const lowerCasePage = page.toLowerCase();
-  const change = async <T,>(func: (param: T) => void, to: T) => {
-    func(to);
-  };
-  let textColor: string;
-  if (selectedPage == lowerCasePage) {
-    textColor = "text-yellow";
-  } else if (isTopOfPage) {
-    textColor = "text-black";
-  }
-  else {
-    textColor = "text-white";
-  }
+const Link = (props: LinkProps) => {
+  const { isTopOfPage, page, url, iconName, marginLeft } = props;
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <AnchorLink
-      className={`${textColor} hover:transition hover:duration-500 hover:text-yellow`}
-      href={`#${lowerCasePage}`}
-      onClick={async () => {
-        change(setCanChange, false);
-        change(setSelectedPage, lowerCasePage);
-        await resolveAfterSeconds(timeToWait);
-        await change(setCanChange, true);
-      }}
+    <motion.div
+      animate={{ rotate: isHovered ? 360 : 0 }}
+      transition={{ duration: 0.25 }}
     >
-      {page}
-    </AnchorLink>
+      <a href={url} target="_blank" rel="noreferrer">
+        <button
+          onMouseEnter={() => {
+            setIsHovered(true);
+          }}
+          onMouseLeave={() => {
+            setIsHovered(false);
+          }}
+        >
+          <motion.span
+            className="opacity-100"
+            transition={{ duration: 0.2 }}
+            animate={{ opacity: isHovered ? 0.0 : 1.0 }}
+          >
+            {isTopOfPage ? (
+              <Image
+                className={`absolute -top-1 ${marginLeft} z-10 opacity-100`}
+                src={`/assets/svg/${iconName}-black.svg`}
+                alt="file"
+                width={20}
+                height={20}
+              />
+            ) : (
+              <>
+                <Image
+                  className={`absolute -top-1 ${marginLeft} z-10 opacity-100`}
+                  src={`/assets/svg/${iconName}-yellow.svg`}
+                  alt="file"
+                  width={20}
+                  height={20}
+                />
+              </>
+            )}
+          </motion.span>
+          <motion.span
+            className={`z-20 opacity-0`}
+            transition={{ duration: 0.2 }}
+            animate={{ opacity: isHovered ? 1.0 : 0.0 }}
+          >
+            <span className={`${isTopOfPage ? "text-black" : "text-yellow"}`}>
+              {page}
+            </span>
+          </motion.span>
+        </button>
+      </a>
+    </motion.div>
   );
 };
 
 type NavbarProps = {
-  selectedPage: string;
   setSelectedPage: (page: string) => void;
   isTopOfPage: boolean;
   setCanChange: (condition: boolean) => void;
 };
 
-const ScrollLinks = ({
-  isTopOfPage,
-  setCanChange,
-  selectedPage,
-  setSelectedPage,
-}: ScrollLinkProps) => {
-  return AnchorNames.map((page) => {
-    const capitalizedPage = page.charAt(0).toUpperCase() + page.slice(1);
-    return (
-      <ScrollLink
-        isTopOfPage={isTopOfPage}
-        key={page.toLowerCase()}
-        page={capitalizedPage}
-        selectedPage={selectedPage}
-        setSelectedPage={setSelectedPage}
-        setCanChange={setCanChange}
-      />
-    );
-  });
-};
-
-const Navbar = ({
-  isTopOfPage,
-  selectedPage,
-  setSelectedPage,
-  setCanChange,
-}: NavbarProps) => {
+const Navbar = (props: NavbarProps) => {
+  const { isTopOfPage } = props;
   const isAboveSmallScreens = useMediaQuery("(min-width: 768px)");
   const topColor = isTopOfPage ? "" : "bg-purple";
 
@@ -99,18 +86,25 @@ const Navbar = ({
       className={`fixed top-0 z-40 w-full py-6 duration-150 ease-in-out ${topColor}`}
     >
       <div className={`mx-auto flex w-5/6 items-center justify-between`}>
-        <h4 className={`font-playfair text-3xl font-bold text-yellow`}>ORR</h4>
+        <h4
+          className={`font-playfair text-3xl font-bold ${
+            isTopOfPage ? "text-black" : "text-yellow"
+          }`}
+        >
+          ORR
+        </h4>
 
         {isAboveSmallScreens ? (
           <div
-            className={`flex justify-between gap-16 font-opensans text-sm font-semibold`}
+            className={`relative flex h-full justify-between gap-16 font-opensans text-sm font-semibold`}
           >
-            {ScrollLinks({
-              isTopOfPage,
-              setCanChange,
-              selectedPage,
-              setSelectedPage,
-            } as ScrollLinkProps)}
+            <Link
+              page="Resume"
+              url="/General-Resume.pdf"
+              marginLeft="ml-4"
+              iconName="file-solid"
+              isTopOfPage={isTopOfPage}
+            />
           </div>
         ) : (
           <></>

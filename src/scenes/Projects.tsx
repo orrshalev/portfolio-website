@@ -9,7 +9,7 @@ import { AnchorPrioritiesMap } from "../pages";
 
 const container = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.2 } },
+  visible: { transition: { staggerChildren: 0.15 } },
 };
 
 const projectVarient = {
@@ -27,8 +27,26 @@ const Project = ({
   url: string;
 }) => {
   const projectTitle = title.split(" ").join("-").toLowerCase();
+  const isSelf = url === "#";
 
-  return (
+  return isSelf ? (
+    <motion.div className={`relative`} variants={projectVarient}>
+      <div
+        className={`absolute z-30 flex h-full w-full 
+      flex-col items-center justify-center bg-grey text-center text-deep-blue opacity-0 
+      transition duration-500 hover:opacity-90`}
+      >
+        <p className={`font-playfair text-2xl`}>{title}</p>
+        <p className={`mt-7`}>{subtitle}</p>
+      </div>
+      <Image
+        src={`/assets/image/${projectTitle}.png`}
+        alt={`${title} thumbnail`}
+        width={400}
+        height={400}
+      ></Image>
+    </motion.div>
+  ) : (
     <a href={url} target="_blank" rel="noreferrer">
       <motion.div className={`relative`} variants={projectVarient}>
         <div
@@ -40,7 +58,7 @@ const Project = ({
           <p className={`mt-7`}>{subtitle}</p>
         </div>
         <Image
-          src={`/assets/${projectTitle}.png`}
+          src={`/assets/image/${projectTitle}.png`}
           alt={`${title} thumbnail`}
           width={400}
           height={400}
@@ -128,9 +146,25 @@ const Projects = (props: ProjectsProps) => {
             url="https://www.terryfintech.org/"
           />
           <Project
+            title="The Hollingsworth Award"
+            subtitle="Lorem ipsum dolor sit amet."
+            url="https://www.math.uga.edu/undergraduate-student-award-winners"
+          />
+          <Project
             title="VR & Music Research Lab"
             subtitle="Lorem ipsum dolor sit amet."
-            url="#" />
+            url="#"
+          />
+          <Project
+            title="The Computer Science Undergraduate Research Support Fund"
+            subtitle="Lorem ipsum dolor sit amet."
+            url="https://www.cs.uga.edu/scholarships"
+          />
+          <Project
+            title="AI & Data Science Analyst at J.P. Morgan Chase & Co."
+            subtitle="Lorem ipsum dolor sit amet."
+            url="#"
+          />
           {/* <motion.div className={`relative`} variants={projectVarient}>
             <div
               className={`absolute flex h-full w-full items-center justify-center bg-purple 
