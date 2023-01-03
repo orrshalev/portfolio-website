@@ -1,15 +1,17 @@
 import React from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 
-// type Props = {}
-
-const ColorWheel = () => {
+const OrrIcon = () => {
   return (
-    <svg
+    <motion.svg
+      initial="hidden"
+      whileInView="visible"
+      transition={{ duration: 3, repeat: Infinity }}
+      animate={{ y: [20, -20, 20] }}
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       viewBox="0 0 331.615 531.348"
+      height={500}
     >
       <g id="PC_Body" data-name="PC Body">
         <polygon
@@ -74,17 +76,17 @@ const ColorWheel = () => {
             width={100}
             x={191}
             y={194}
-            transition={{ duration: 0.4, repeat: Infinity, ease: "linear"}}
+            transition={{ duration: 0.4, repeat: Infinity, ease: "linear" }}
             animate={{ rotate: 360 }}
           />
           <motion.image
-          initial={{ rotate: 135 }}
+            initial={{ rotate: 135 }}
             href="/assets/image/Color_circle_RGB.png"
             height={100}
             width={100}
             x={190}
             y={306}
-            transition={{ duration: 0.4, repeat: Infinity, ease: "linear"}}
+            transition={{ duration: 0.4, repeat: Infinity, ease: "linear" }}
             animate={{ rotate: 495 }}
           />
           <motion.image
@@ -94,7 +96,7 @@ const ColorWheel = () => {
             width={100}
             x={190}
             y={415}
-            transition={{ duration: 0.4, repeat: Infinity, ease: "linear"}}
+            transition={{ duration: 0.4, repeat: Infinity, ease: "linear" }}
             animate={{ rotate: 630 }}
           />
         </g>
@@ -134,8 +136,8 @@ const ColorWheel = () => {
           style={{ fill: "#231f20" }}
         />
       </g>
-    </svg>
+    </motion.svg>
   );
 };
 
-export default ColorWheel;
+export default OrrIcon;

@@ -1,5 +1,5 @@
 import React from "react";
-import ColorWheelAnimate from "../graphics/ColorWheel/ColorWheelAnimate";
+import OrrIcon from "../graphics/OrrIcon";
 import Image from "next/image";
 import useMediaQuery from "../hooks/useMediaQuery";
 import { motion } from "framer-motion";
@@ -22,7 +22,10 @@ const Landing = ({ isInViewport }: Props) => {
   useEffect(() => {
     inViewport ? isInViewport(AnchorPrioritiesMap.home) : isInViewport(-1);
   }, [isInViewport, inViewport]);
-
+  const beforeIcon = `before:absolute
+          before:-left-2 before:z-[-1]
+          before:mr-5 before:h-full before:w-[75%] before:rounded-full
+          before:border-red before:bg-gradient-rainblue  before:opacity-90`
   return (
     <section
       id="home"
@@ -31,23 +34,18 @@ const Landing = ({ isInViewport }: Props) => {
     >
       {/* IMAGE SECTION */}
       <motion.div
-        className={`relative z-10 ml-24 flex before:absolute
-          before:-left-2 before:z-[-1]
-          before:mr-5 before:h-full before:w-[75%] before:rounded-full
-          before:border-red before:bg-gradient-rainblue  before:opacity-90 md:order-2 `}
+        className={`relative z-10 ml-24 flex md:order-2 `}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.5 }}
         variants={{
-          hidden: { opacity: 0, x: 50 },
-          visible: { opacity: 1, x: 0 },
+          hidden: { opacity: 0 },
+          visible: { opacity: 1 },
         }}
       >
         {/* Increase size of this svg */}
-        <svg height={500} >
-          <ColorWheelAnimate spinTime={10000} />
-        </svg>
+          <OrrIcon />
       </motion.div>
 
       {/* MAIN SECTION */}

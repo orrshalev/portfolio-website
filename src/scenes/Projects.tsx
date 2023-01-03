@@ -114,16 +114,17 @@ const Projects = (props: ProjectsProps) => {
           className={`sm:grid sm:grid-cols-3`}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
+          viewport={{ once: true, amount: 0.3 }}
           variants={container}
         >
           {/* ROW 1 */}
-          <div
+          <motion.div
             className={`flex max-w-[400px] items-center justify-center bg-yellow 
             p-10 text-center font-playfair text-2xl font-semibold`}
+            variants={projectVarient}
           >
             BEAUTIFUL PROJECTS THAT I MADE
-          </div>
+          </motion.div>
           <Project
             title="Math Toolbox"
             subtitle="Lorem ipsum dolor sit amet."
@@ -165,14 +166,6 @@ const Projects = (props: ProjectsProps) => {
             subtitle="Lorem ipsum dolor sit amet."
             url="#"
           />
-          {/* <motion.div className={`relative`} variants={projectVarient}>
-            <div
-              className={`absolute flex h-full w-full items-center justify-center bg-purple 
-            p-10 text-center font-playfair text-2xl font-semibold`}
-            >
-              BOTTOM TEXT
-            </div>
-          </motion.div> */}
         </motion.div>
       </div>
     </section>
