@@ -34,7 +34,7 @@ const Landing = ({ isInViewport }: Props) => {
     >
       {/* IMAGE SECTION */}
       <motion.div
-        className={`relative z-10 ml-24 flex md:order-2 `}
+        className={`relative z-10  flex basis-1/3 h-2/3 md:order-2 justify-center`}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}

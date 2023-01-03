@@ -17,15 +17,14 @@ const projectVarient = {
   visible: { opacity: 1, scale: 1 },
 };
 
-const Project = ({
-  title,
-  subtitle,
-  url,
-}: {
+type ProjectProps = {
   title: string;
   subtitle: string;
   url: string;
-}) => {
+};
+
+const Project = (props: ProjectProps) => {
+  const { title, subtitle, url } = props;
   const projectTitle = title.split(" ").join("-").toLowerCase();
   const isSelf = url === "#";
 
@@ -33,8 +32,8 @@ const Project = ({
     <motion.div className={`relative`} variants={projectVarient}>
       <div
         className={`absolute z-30 flex h-full w-full 
-      flex-col items-center justify-center bg-grey text-center text-deep-blue opacity-0 
-      transition duration-500 hover:opacity-90`}
+      flex-col items-center justify-center bg-grey text-center text-deep-blue
+      opacity-0 transition duration-500 hover:opacity-90`}
       >
         <p className={`font-playfair text-2xl`}>{title}</p>
         <p className={`mt-7`}>{subtitle}</p>
@@ -44,7 +43,7 @@ const Project = ({
         alt={`${title} thumbnail`}
         width={400}
         height={400}
-      ></Image>
+      />
     </motion.div>
   ) : (
     <a href={url} target="_blank" rel="noreferrer">
@@ -109,22 +108,26 @@ const Projects = (props: ProjectsProps) => {
       </motion.div>
 
       {/* PROJECTS */}
-      <div className={`flex justify-center`}>
+      <div className={`flex justify-center `}>
         <motion.div
-          className={`sm:grid sm:grid-cols-3`}
+          className={`grid gap-2 sm:grid-cols-3 sm:gap-0`}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true }}
           variants={container}
         >
           {/* ROW 1 */}
-          <motion.div
-            className={`flex max-w-[400px] items-center justify-center bg-yellow 
-            p-10 text-center font-playfair text-2xl font-semibold`}
-            variants={projectVarient}
-          >
-            BEAUTIFUL PROJECTS THAT I MADE
-          </motion.div>
+          {/* TODO: MAKE THIS DIV LESS HACKY */}
+          <div className={`relative flex`}>
+            <motion.div
+              className={`flex items-center max-w-[400px] w-full h-0
+              justify-center bg-yellow pb-[100%] text-center font-playfair text-2xl
+              font-semibold`}
+              variants={projectVarient}
+            >
+              <p className={`absolute flex justify-center items-center pt-[100%]`}>BEAUTIFUL PROJECTS THAT I MADE</p>
+            </motion.div>
+          </div>
           <Project
             title="Math Toolbox"
             subtitle="Lorem ipsum dolor sit amet."
