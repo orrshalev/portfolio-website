@@ -71,7 +71,7 @@ const OrrIcon = () => {
       <g id="PC_Wheels" data-name="PC Wheels">
         <g id="Color_Wheels" data-name="Color Wheels">
           <motion.image
-            href="/assets/image/Color_circle_RGB.png"
+            href="/assets/image/yellow-circle.png"
             height={100}
             width={100}
             x={191}
@@ -81,7 +81,7 @@ const OrrIcon = () => {
           />
           <motion.image
             initial={{ rotate: 135 }}
-            href="/assets/image/Color_circle_RGB.png"
+            href="/assets/image/yellow-circle.png"
             height={100}
             width={100}
             x={190}
@@ -91,7 +91,7 @@ const OrrIcon = () => {
           />
           <motion.image
             initial={{ rotate: 270 }}
-            href="/assets/image/Color_circle_RGB.png"
+            href="/assets/image/yellow-circle.png"
             height={100}
             width={100}
             x={190}
