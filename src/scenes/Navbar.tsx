@@ -1,10 +1,9 @@
 import React from "react";
 import Link from "next/link";
-import { useState, useRef } from "react";
+import { useState, } from "react";
 import Image from "next/image";
 import useMediaQuery from "../hooks/useMediaQuery";
 import { motion } from "framer-motion";
-import useElementDimensions from "../hooks/useElementDimensions";
 
 type PageLinkProps = {
   page: string;
@@ -89,26 +88,6 @@ const PageLink = (props: PageLinkProps) => {
   );
 };
 
-const sidebar = {
-  open: (height = 1000) => ({
-    clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
-    transition: {
-      type: "spring",
-      stiffness: 20,
-      restDelta: 2,
-    },
-  }),
-  closed: {
-    clipPath: "circle(20px at 40px 40px)",
-    transition: {
-      delay: 0.5,
-      type: "spring",
-      stiffness: 400,
-      damping: 40,
-    },
-  },
-};
-
 type NavbarProps = {
   isTopOfPage: boolean;
 };
@@ -117,10 +96,6 @@ const Navbar = (props: NavbarProps) => {
   const { isTopOfPage } = props;
   const isAboveSmallScreens = useMediaQuery("(min-width: 768px)");
   const topColor = isTopOfPage ? "" : "bg-purple";
-
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const containerRef = React.useRef(null);
-  const { height } = useElementDimensions(containerRef);
 
   return (
     <nav
@@ -166,15 +141,7 @@ const Navbar = (props: NavbarProps) => {
             />
           </div>
         ) : (
-          <motion.div
-            initial={false}
-            animate={isMenuOpen ? "open" : "closed"}
-            ref={containerRef}
-            custom={height}
-            className={`absolute h-full right-0`}
-          >
-            <motion.button onClick={() => setIsMenuOpen(prevState => !prevState)} className={`bg-yellow h-full w-[90px]`} variants={sidebar} />
-          </motion.div>
+          <></>
         )}
       </div>
     </nav>

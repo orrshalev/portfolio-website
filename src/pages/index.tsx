@@ -72,8 +72,6 @@ const Home: NextPage = () => {
       </Head>
       <Navbar
         isTopOfPage={isTopOfPage}
-        setSelectedPage={setSelectedPage}
-        setCanChange={setCanChange}
       />
       <DotGroup
         setCanChange={setCanChange}
