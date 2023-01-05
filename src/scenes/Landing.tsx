@@ -72,7 +72,7 @@ const Landing = ({ isInViewport }: Props) => {
           </p>
 
           <p className={`ml-10 p-4 font-opensans font-semibold md:ml-0`}>
-            Powering Software One Line at a Time!
+            Powering Software One Line at a Time.
           </p>
         </motion.div>
       </div>

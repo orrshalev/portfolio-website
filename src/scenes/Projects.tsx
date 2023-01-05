@@ -54,7 +54,7 @@ const Project = (props: ProjectProps) => {
       transition duration-500 hover:opacity-90`}
         >
           <p className={`font-playfair text-2xl`}>{title}</p>
-          <p className={`mt-7`}>{subtitle}</p>
+          <p className={`mt-7 w-[90%]`}>{subtitle}</p>
         </div>
         <Image
           src={`/assets/image/${projectTitle}.png`}
@@ -91,20 +91,11 @@ const Projects = (props: ProjectsProps) => {
           visible: { opacity: 1, y: 0 },
         }}
       >
-        <div>
-          <p className={`font-playfair text-4xl font-semibold`}>
-            <span className={`text-yellow`}>MY </span>WORK
-          </p>
-          <div className={`mt-5 flex justify-center`}>
-            <LineGradient width="w-1/3" />
+          <div className={`mt-5 mb-24 flex justify-center`}>
+            <LineGradient width="w-full" />
           </div>
-        </div>
 
-        <p className={`mt-10 mb-7`}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-          voluptates, quod, quia, voluptate quae voluptatem quibusdam
-          exercitationem voluptas quas dolorum quidem. Quisquam, quae.
-        </p>
+        
       </motion.div>
 
       {/* PROJECTS */}
@@ -125,48 +116,52 @@ const Projects = (props: ProjectsProps) => {
               font-semibold`}
               variants={projectVarient}
             >
-              <p className={`absolute flex justify-center items-center pt-[100%]`}>BEAUTIFUL PROJECTS THAT I MADE</p>
+              <p className={`absolute flex justify-center items-center pt-[100%]`}>SOME PROJECTS I&apos;VE BEEN WORKING ON</p>
             </motion.div>
           </div>
           <Project
             title="Math Toolbox"
-            subtitle="Lorem ipsum dolor sit amet."
+            subtitle="A Next.js and Tailwind CSS app to help further your math education"
             url="https://mathtoolbox.org"
           />
           <Project
             title="VR Multiplayer Bowling Game"
-            subtitle="Lorem ipsum dolor sit amet."
+            subtitle="A collaborative Meta Quest game built with Unity Engine"
             url="https://github.com/orrshalev/vr-bowling-game"
           />
           {/* ROW 2 */}
           <Project
             title="University of Georgia Data Science Competition 2021"
-            subtitle="Lorem ipsum dolor sit amet."
+            subtitle="Team-lead for undergraduate runner-up team. Utilized
+            random-forest classification and logistic regression to predict credit approval"
             url="https://www.stat.uga.edu/events/content/2021/uga-data-science-competition-2021"
           />
           <Project
             title="Terry FinTech Society"
-            subtitle="Lorem ipsum dolor sit amet."
+            subtitle="Director of Events and developer of the society's website using Wordpress"
             url="https://www.terryfintech.org/"
           />
           <Project
             title="The Hollingsworth Award"
-            subtitle="Lorem ipsum dolor sit amet."
+            subtitle="Award and scholarship awarded for excellence in
+            mathematics undergraduate studies"
             url="https://www.math.uga.edu/undergraduate-student-award-winners"
           />
           <Project
             title="VR & Music Research Lab"
-            subtitle="Lorem ipsum dolor sit amet."
+            subtitle="Developing a VR experience and interactive data analysis tools for 
+            purposes of vocalization related research"
             url="#"
           />
           <Project
             title="The Computer Science Undergraduate Research Support Fund"
-            subtitle="Lorem ipsum dolor sit amet."
+            subtitle="Scholarship awarded to support undergraduate research endavors within the
+            School of Computing"
             url="https://www.cs.uga.edu/scholarships"
           />
           <Project
             title="AI & Data Science Analyst at J.P. Morgan Chase & Co."
-            subtitle="Lorem ipsum dolor sit amet."
+            subtitle="Utilized machine learning to bolster the One Chase initiative"
             url="#"
           />
         </motion.div>

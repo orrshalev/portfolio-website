@@ -131,14 +131,14 @@ const Navbar = (props: NavbarProps) => {
               isExternal={true}
               dimensions={20}
             />
-            <PageLink
+            {/* <PageLink
               page="About"
               url="/about"
               marginLeft="ml-2"
               iconName="clipboard-question-solid"
               isTopOfPage={isTopOfPage}
               dimensions={22}
-            />
+            /> */}
           </div>
         ) : (
           <></>

@@ -5,12 +5,12 @@ import useMediaQuery from "../hooks/useMediaQuery";
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
 import useIsInViewport from "../hooks/useIsInViewport";
-import type { Order} from "../pages";
-import { AnchorPrioritiesMap} from "../pages";
+import type { Order } from "../pages";
+import { AnchorPrioritiesMap } from "../pages";
 
-type Props = {isInViewport: (inViewport: Order) => void};
+type Props = { isInViewport: (inViewport: Order) => void };
 
-const MySkills = ({isInViewport}: Props) => {
+const MySkills = ({ isInViewport }: Props) => {
   const isAboveMediumScreens = useMediaQuery("(min-width: 1060px)");
   const skillsRef = useRef(null);
   const inViewport = useIsInViewport(skillsRef);
@@ -38,10 +38,12 @@ const MySkills = ({isInViewport}: Props) => {
             MY <span className={`text-yellow`}>SKILLS</span>
           </p>
           <LineGradient width="w-[190px]" />
-          <p className={`mt-10 mb-7`}>
-            {/* ADD LATIN */}
-            ipso lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Pellentesque euismod, nisl nec tincidunt luctus, elit ipsum
+          <p className={`font-lg mt-10 mb-7 font-opensans text-lg`}>
+            I am an experienced developer with a love for all things software. I
+            like to challange myself with variying and new technologies and
+            constantly be upping my abilities. Whether it be a new framework,
+            game engine, language, or just a new way of thinking, I am always
+            looking to bring forth the best product I can.
           </p>
         </motion.div>
 
@@ -73,10 +75,12 @@ const MySkills = ({isInViewport}: Props) => {
         </div>
       </div>
       {/* SKILLS */}
-      <div className={`mt-16 gap-20 flex flex-col md:flex md:flex-row`}>
+      <div
+        className={`mt-20  flex flex-col gap-20 sm:mt-20 md:mt-10 md:flex md:flex-row`}
+      >
         {/* EXPERIENCE */}
         <motion.div
-          className={`mt-10 md:w-1/3`}
+          className={`mt-5 md:mt-10 md:w-1/3`}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
@@ -89,24 +93,24 @@ const MySkills = ({isInViewport}: Props) => {
           <div className={`relative h-32`}>
             <div className={`z-10`}>
               <p className={`font-playfair text-5xl font-semibold`}>01</p>
-              <p className={`font-playfair text-3xl font-semibold`}>
+              <p className={`mt-3 font-playfair text-3xl font-semibold`}>
                 Full-Stack
               </p>
             </div>
             <div
               className={`absolute right-0 top-0 z-[-1] h-32 w-1/2 bg-yellow md:w-3/4`}
             />
-            <p className={`mt-8`}>
-              A auctor, nisl nec tincidunt luctus, elit ipsum interdum nulla,
-              sit amet commodo magna eros quis urna. Nunc viverra imperdiet
-              enim. Fusce est. Vivamus a tellus.
+            <p className={`mt-2 font-opensans text-lg`}>
+              Multiple personal projects developed in Next.js, including this website.
+              Knowledge of TypeScript, Tailwind CSS, REST API, tRPC, Prisma, and
+              many more.
             </p>
           </div>
         </motion.div>
 
         {/* INNOVATIVE */}
         <motion.div
-          className={`mt-10 md:w-1/3`}
+          className={`mt-40 sm:mt-20 md:mt-10 md:w-1/3`}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
@@ -126,17 +130,18 @@ const MySkills = ({isInViewport}: Props) => {
             <div
               className={`absolute right-0 top-0 z-[-1] h-32 w-1/2 bg-orange md:w-3/4`}
             />
-            <p className={`mt-5`}>
-              A auctor, nisl nec tincidunt luctus, elit ipsum interdum nulla,
-              sit amet commodo magna eros quis urna. Nunc viverra imperdiet
-              enim. Fusce est. Vivamus a tellus.
+            <p className={`mt-2 font-opensans text-lg`}>
+              Extensive professional, research, and personal experience with data analysis
+              and visualization using Python, R, and Tableau. Experience with
+              advanced analytics and machine learning, including time series
+              forecasting, clustering, classification algorithms, and deep learning.
             </p>
           </div>
         </motion.div>
 
         {/* CREATIVE */}
         <motion.div
-          className={`mt-10 md:w-1/3`}
+          className={`mt-40 sm:mt-20 md:mt-10 md:w-1/3`}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
@@ -149,17 +154,17 @@ const MySkills = ({isInViewport}: Props) => {
           <div className={`relative h-32`}>
             <div className={`z-10`}>
               <p className={`font-playfair text-5xl font-semibold`}>03</p>
-              <p className={`font-playfair text-3xl mt-3 font-semibold`}>
+              <p className={`mt-3 font-playfair text-3xl font-semibold`}>
                 Virtual Reality
               </p>
             </div>
             <div
-              className={`absolute right-0 top-0 z-[-1] h-32 w-1/2 bg-purple md:w-3/4`}
+              className={`absolute right-0 top-0 z-[-1] h-32 w-1/2 bg-light-purple md:w-3/4`}
             />
-            <p className={`mt-5`}>
-              A auctor, nisl nec tincidunt luctus, elit ipsum interdum nulla,
-              sit amet commodo magna eros quis urna. Nunc viverra imperdiet
-              enim. Fusce est. Vivamus a tellus.
+            <p className={`mt-2 font-opensans text-lg`}>
+              Personal and research experience with Oculus products made with 
+              Unity, C#, and Blender.  Extensive work using ray-tracing,
+              biometric data collection, animation, and multiplayer experiences.
             </p>
           </div>
         </motion.div>

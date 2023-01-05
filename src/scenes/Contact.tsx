@@ -3,17 +3,17 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 
-import type { FormEvent} from "react";
+import type { FormEvent } from "react";
 import { useEffect } from "react";
 import React from "react";
 import { useRef } from "react";
 import useIsInViewport from "../hooks/useIsInViewport";
-import type { Order} from "../pages";
-import { AnchorPrioritiesMap} from "../pages";
+import type { Order } from "../pages";
+import { AnchorPrioritiesMap } from "../pages";
 
-type Props = {isInViewport: (inViewport: Order) => void};
+type Props = { isInViewport: (inViewport: Order) => void };
 
-const Contact = ({isInViewport}: Props) => {
+const Contact = ({ isInViewport }: Props) => {
   const {
     register,
     trigger,
@@ -35,7 +35,7 @@ const Contact = ({isInViewport}: Props) => {
   }, [isInViewport, inViewport]);
 
   return (
-    <section ref={contactRef} id="contact" className={`py-48`}>
+    <section ref={contactRef} id="contact" className={`pb-48`}>
       {/* HEADINGS */}
       <motion.div
         initial="hidden"
@@ -58,34 +58,41 @@ const Contact = ({isInViewport}: Props) => {
       </motion.div>
 
       {/* FORM & IMAGE */}
-        <motion.div
-          className={`flex items-center flex-col md:flex-row justify-center gap-16`}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.5 }}
-          variants={{
-            hidden: { opacity: 0, y: 50 },
-            visible: { opacity: 1, y: 0 },
-          }}
-        >
+      <motion.div
+        className={`flex flex-col items-center justify-center gap-16 md:flex-row `}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.5 }}
+        variants={{
+          hidden: { opacity: 0, y: 50 },
+          visible: { opacity: 1, y: 0 },
+        }}
+      >
+        <div className={`flex flex-col gap-10 basis-1/2 justify-center`}>
           <Image
-            className={`flex basis-1/2 just`}
-            src="/assets/image/contact-me.png"
-            width={300}
-            height={300}
+            className={`basis-1/2 max-w-[350px] mx-auto`}
+            src="/assets/image/contact-image.png"
+            width={2353}
+            height={2311}
             alt="contact"
           />
-          <form
-            className={`basis-1/2 w-full`}
-            target="_blank"
-            onSubmit={onSubmit}
-            action="https://formsubmit.co/shalev.orr@gmail.com"
-            method="POST"
-          >
-            <div className={`flex flex-col gap-2`}>
+          <p className={`basis-1/2 my-auto font-playfair text-2xl text-center`}>
+            I sometimes take on <span className={`text-purple`}>freelance projects</span>. If you have a project you
+            would like to discuss or otherwise would like to make contact, please email me 
+            through this form or through one of my socials.
+          </p>
+        </div>
+        <form
+          className={`w-full basis-1/2`}
+          target="_blank"
+          onSubmit={onSubmit}
+          action="https://formsubmit.co/shalev.orr@gmail.com"
+          method="POST"
+        >
+          <div className={`flex flex-col gap-2`}>
             <input
-              className={`w-full bg-gray-100 border-black border-2 text-black rounded-sm p-3 font-semibold placeholder-opaque-black`}
+              className={`w-full rounded-sm border-2 border-black bg-gray-100 p-3 font-semibold text-black placeholder-opaque-black`}
               type="text"
               placeholder="NAME"
               {...register("name", {
@@ -102,7 +109,7 @@ const Contact = ({isInViewport}: Props) => {
             )}
 
             <input
-              className={`w-full bg-gray-100 border-black border-2 text-black rounded-sm p-3 font-semibold placeholder-opaque-black`}
+              className={`w-full rounded-sm border-2 border-black bg-gray-100 p-3 font-semibold text-black placeholder-opaque-black`}
               type="text"
               placeholder="EMAIL"
               {...register("email", {
@@ -118,7 +125,7 @@ const Contact = ({isInViewport}: Props) => {
             )}
 
             <textarea
-              className={`w-full text-black bg-gray-100 border-black border-2 rounded-sm px-3 pt-3 pb-10 font-semibold placeholder-opaque-black`}
+              className={`w-full rounded-sm border-2 border-black bg-gray-100 px-3 pt-3 pb-10 font-semibold text-black placeholder-opaque-black`}
               placeholder="MESSAGE"
               {...register("message", {
                 required: true,
@@ -133,16 +140,16 @@ const Contact = ({isInViewport}: Props) => {
                   "Max length is 3000 characters."}
               </p>
             )}
-            </div>
+          </div>
 
-            <button
-              type="submit"
-              className={`mt-5 rounded-sm bg-yellow mx-auto flex p-5 font-semibold text-deep-blue transition duration-500 hover:bg-purple hover:text-white`}
-            >
-              SEND A MESSAGE
-            </button>
-          </form>
-        </motion.div>
+          <button
+            type="submit"
+            className={`mx-auto mt-5 flex rounded-sm bg-yellow p-5 font-semibold text-deep-blue transition duration-500 hover:bg-purple hover:text-white`}
+          >
+            SEND A MESSAGE
+          </button>
+        </form>
+      </motion.div>
     </section>
   );
 };

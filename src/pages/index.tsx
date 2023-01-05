@@ -91,7 +91,6 @@ const Home: NextPage = () => {
         <div className={`mx-auto w-5/6 md:h-full`}>
           <Projects isInViewport={setIsInProjects} />
         </div>
-
         <div className={`mx-auto w-5/6 md:h-full`}>
           <Contact isInViewport={setIsInCotact} />
         </div>
