@@ -11,7 +11,7 @@ const OrrIcon = () => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       viewBox="0 0 331.615 531.348"
-      className={`w-[85%] h-[85%] md:w-auto md:h-auto`}
+      className={`w-[70%] h-[70%] md:w-auto md:h-auto`}
     >
       <g id="PC_Body" data-name="PC Body">
         <polygon

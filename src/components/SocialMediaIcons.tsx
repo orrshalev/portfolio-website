@@ -1,8 +1,6 @@
 import Image from "next/image";
 
-type Props = Record<string, never>;
-
-const SocialMediaIcons = (props: Props) => {
+const SocialMediaIcons = () => {
   return (
     <div className={`my-10 flex justify-center gap-7 md:justify-start`}>
       <a

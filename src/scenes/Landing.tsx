@@ -1,7 +1,5 @@
 import React from "react";
 import OrrIcon from "../graphics/OrrIcon";
-import Image from "next/image";
-import useMediaQuery from "../hooks/useMediaQuery";
 import { motion } from "framer-motion";
 import useIsInViewport from "../hooks/useIsInViewport";
 import type { Order } from "../pages/index";
@@ -14,8 +12,7 @@ type Props = {
 };
 
 const Landing = ({ isInViewport }: Props) => {
-  const isAboveMediumScreens = useMediaQuery("(min-width: 1060px)");
-
+  
   const landingRef = useRef(null);
   const inViewport = useIsInViewport(landingRef);
 
@@ -34,7 +31,7 @@ const Landing = ({ isInViewport }: Props) => {
     >
       {/* IMAGE SECTION */}
       <motion.div
-        className={`relative z-10  flex basis-1/3 h-2/3 md:order-2 justify-center`}
+        className={`relative z-10 flex basis-1/3 h-2/3 md:order-2 justify-center`}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
