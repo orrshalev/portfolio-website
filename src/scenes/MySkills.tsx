@@ -20,7 +20,7 @@ const MySkills = ({ isInViewport }: Props) => {
   }, [isInViewport, inViewport]);
 
   return (
-    <section ref={skillsRef} id="skills" className={`pt-10 pb-24`}>
+    <section ref={skillsRef} id="skills" className={`pb-24 mt-10 md:pt-10 md:mt-0`}>
       {/* HEADER AND IMAGE SECTION */}
       <div className={`mt-32 md:flex md:justify-between md:gap-16`}>
         <motion.div
@@ -34,7 +34,7 @@ const MySkills = ({ isInViewport }: Props) => {
             visible: { opacity: 1, x: 0 },
           }}
         >
-          <p className={`mb-5 font-playfair text-4xl font-semibold`}>
+          <p className={`mb-5 pt-10 font-playfair text-4xl font-semibold`}>
             MY <span className={`text-yellow`}>SKILLS</span>
           </p>
           <LineGradient width="w-[190px]" />

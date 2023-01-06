@@ -35,7 +35,7 @@ const Contact = ({ isInViewport }: Props) => {
   }, [isInViewport, inViewport]);
 
   return (
-    <section ref={contactRef} id="contact" className={`pb-48`}>
+    <section ref={contactRef} id="contact" className={`pb-48 pt-10`}>
       {/* HEADINGS */}
       <motion.div
         initial="hidden"

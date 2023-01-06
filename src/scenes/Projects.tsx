@@ -79,7 +79,7 @@ const Projects = (props: ProjectsProps) => {
   }, [isInViewport, inViewport]);
 
   return (
-    <section ref={projectsRef} id="projects" className={`py-48`}>
+    <section ref={projectsRef} id="projects" className={`my-48`}>
       <motion.div
         className={`mx-auto text-center md:w-2/4`}
         initial="hidden"

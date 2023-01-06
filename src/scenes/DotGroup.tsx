@@ -32,6 +32,7 @@ const DotGroup = ({ selectedPage, setSelectedPage, setCanChange }: DotGroupProps
         return (
           <AnchorLink
             key={page.toLowerCase()}
+            offset={70}
             className={`${
               selectedPage === lowerCasePage ? selectedStyles : "bg-dark-grey"
             } h-3 w-3 rounded-full`}

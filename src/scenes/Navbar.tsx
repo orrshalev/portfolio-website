@@ -1,9 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import { useState, } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import useMediaQuery from "../hooks/useMediaQuery";
 import { motion } from "framer-motion";
+import { useCycle } from "framer-motion";
+import MenuToggle from "../components/MenuToggle";
 
 type PageLinkProps = {
   page: string;
@@ -95,44 +97,56 @@ type NavbarProps = {
 const Navbar = (props: NavbarProps) => {
   const { isTopOfPage } = props;
   const isAboveSmallScreens = useMediaQuery("(min-width: 768px)");
-  const [isMenuToggled , setIsMenuToggled] = useState(false);
+  const [isMenuToggled, setIsMenuToggled] = useCycle(false, true);
   const topColor = isTopOfPage ? "" : "bg-purple";
+
+  let animationState: string;
+  if (isMenuToggled && isTopOfPage) {
+    animationState = "open-top";
+  } else if (isMenuToggled) {
+    animationState = "open";
+  } else if (isTopOfPage) {
+    animationState = "closed-top";
+  } else {
+    animationState = "closed";
+  }
+
+  const buttonStyle = `absolute right-20 top-[25px] rounded-full bg-yellow p-2`;
 
   return (
     <nav
-      className={`fixed top-0 z-40 w-full py-6 duration-150 ease-in-out ${topColor}`}
+      className={`fixed top-0 z-40 h-[70px] w-full duration-150 ease-in-out ${topColor}`}
     >
-      <div className={`mx-auto flex w-5/6 items-center justify-between`}>
-        <h4
-          className={`font-playfair text-3xl font-bold ${
-            isTopOfPage ? "text-black" : "text-yellow"
-          }`}
-        >
-          ORR
-        </h4>
+      <h4
+        className={`absolute top-[15px] font-playfair text-3xl font-bold md:left-36 ${
+          isTopOfPage ? "text-black" : "text-yellow"
+        } ${isAboveSmallScreens ? "left-12" : "right-12"}`}
+      >
+        ORR
+      </h4>
 
-        {isAboveSmallScreens ? (
-          <div
-            className={`relative flex h-full justify-between gap-16 font-opensans text-sm font-semibold`}
-          >
-            <PageLink
-              page="Home"
-              url="/"
-              marginLeft="ml-1"
-              iconName="house-solid"
-              isTopOfPage={isTopOfPage}
-              dimensions={30}
-            />
-            <PageLink
-              page="Resume"
-              url="/General-Resume.pdf"
-              marginLeft="ml-4"
-              iconName="file-solid"
-              isTopOfPage={isTopOfPage}
-              isExternal={true}
-              dimensions={20}
-            />
-            {/* <PageLink
+      {isAboveSmallScreens ? (
+        <div
+          className={`absolute right-20 top-[25px] flex gap-16 font-opensans text-sm font-semibold md:right-36`}
+        >
+          <PageLink
+            page="Home"
+            url="/"
+            marginLeft="ml-1"
+            iconName="house-solid"
+            isTopOfPage={isTopOfPage}
+            dimensions={30}
+          />
+          <PageLink
+            page="Resume"
+            url="/General-Resume.pdf"
+            marginLeft="ml-4"
+            iconName="file-solid"
+            isTopOfPage={isTopOfPage}
+            isExternal={true}
+            dimensions={20}
+          />
+          {/* <PageLink
               page="About"
               url="/about"
               marginLeft="ml-2"
@@ -140,49 +154,46 @@ const Navbar = (props: NavbarProps) => {
               isTopOfPage={isTopOfPage}
               dimensions={22}
             /> */}
-          </div>
-        ) : (
-          <button
-            className={`rounded-full bg-blue p-2`}
-            onClick={() => setIsMenuToggled(!isMenuToggled)}
-          >
-            <Image
-              alt="menu-icon"
-              src="/assets/bars-solid.svg"
-              width={10}
-              height={10}
-            />
-          </button>
-
-        )}
-                {/* MOBILE POPUP */}
-        {!isAboveSmallScreens && (
+        </div>
+      ) : (
+        <></>
+      )}
+      {/* MOBILE POPUP */}
+      {!isAboveSmallScreens && (
+        <>
           <div
-            className={`fixed right-0 bottom-0 h-full w-[300px] bg-blue duration-300 ease-in-out ${
-              isMenuToggled ? "translate-x-0" : "translate-x-full"
+            className={`fixed left-0 bottom-0 h-full w-[300px] bg-light-purple duration-300 ease-in-out ${
+              isMenuToggled ? "translate-x-0" : "-translate-x-full"
             }`}
           >
-            {/* CLOSE ICON */}
-            <div className={`flex justify-end p-12`}>
-              <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
-                <Image
-                  alt="close-icon"
-                  src="/assets/xmark-solid.svg"
-                  width={10}
-                  height={10}
-                />
-              </button>
-            </div>
-
             {/* MENU ITEMS */}
             <div
-              className={`ml-[33%] flex flex-col gap-10 text-2xl text-deep-blue`}
+              className={`mt-[60px] flex flex-col gap-- text-2xl text-deep-blue`}
             >
-              <p>A</p>
+              <button className="inline-flex items-center py-2 px-4 gap-2 font-opensans font-bold ">
+                <Image
+                className={`ml-10`}
+                  src={`/assets/svg/house-solid-yellow.svg`}
+                  alt="file"
+                  width={25}
+                  height={25}
+                />
+                <span className={`ml-2 text-yellow`}>Home</span>
+              </button>
             </div>
           </div>
-        )}
-      </div>
+          {/* CLOSE ICON */}
+          <motion.div
+            animate={animationState}
+            className={`absolute left-12 top-[18px] rounded-full p-2`}
+          >
+            <MenuToggle
+              isTopOfPage={isTopOfPage}
+              toggle={() => setIsMenuToggled()}
+            />
+          </motion.div>
+        </>
+      )}
     </nav>
   );
 };
