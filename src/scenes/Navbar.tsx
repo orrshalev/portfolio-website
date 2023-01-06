@@ -5,17 +5,22 @@ import Image from "next/image";
 import useMediaQuery from "../hooks/useMediaQuery";
 import { motion } from "framer-motion";
 import { useCycle } from "framer-motion";
+import type { Cycle } from "framer-motion";
 import MenuToggle from "../components/MenuToggle";
 
-type PageLinkProps = {
+interface PageLinkProps {
   page: string;
   url: string;
   iconName: string;
-  marginLeft: string;
-  isTopOfPage: boolean;
+  marginLeft?: string;
+  isTopOfPage?: boolean;
   isExternal?: boolean;
   dimensions: number;
-};
+}
+
+interface MobilePageLinkProps extends PageLinkProps {
+  closeMenu: Cycle;
+}
 
 const PageLink = (props: PageLinkProps) => {
   const {
@@ -90,6 +95,29 @@ const PageLink = (props: PageLinkProps) => {
   );
 };
 
+const MobilePageLink = (props: MobilePageLinkProps) => {
+  const mobileButton = (
+    <button
+      className="inline-flex items-center gap-2 py-2 px-4 font-opensans font-bold "
+      onClick={() => props.closeMenu()}
+    >
+      <Image
+        className={`ml-10`}
+        src={`/assets/svg/${props.iconName}-yellow.svg`}
+        alt="file"
+        width={props.dimensions}
+        height={props.dimensions}
+      />
+      <span className={`ml-2 text-yellow`}>{props.page}</span>
+    </button>
+  );
+
+  return props.isExternal ? (
+    <a href={props.url} target="_blank" rel="noreferrer">{mobileButton}</a>
+  ) : (
+    <Link href={props.url}>{mobileButton}</Link>
+  );
+};
 type NavbarProps = {
   isTopOfPage: boolean;
 };
@@ -101,17 +129,13 @@ const Navbar = (props: NavbarProps) => {
   const topColor = isTopOfPage ? "" : "bg-purple";
 
   let animationState: string;
-  if (isMenuToggled && isTopOfPage) {
-    animationState = "open-top";
+  if (!isMenuToggled && isTopOfPage) {
+    animationState = "closed-top";
   } else if (isMenuToggled) {
     animationState = "open";
-  } else if (isTopOfPage) {
-    animationState = "closed-top";
   } else {
     animationState = "closed";
   }
-
-  const buttonStyle = `absolute right-20 top-[25px] rounded-full bg-yellow p-2`;
 
   return (
     <nav
@@ -146,6 +170,7 @@ const Navbar = (props: NavbarProps) => {
             isExternal={true}
             dimensions={20}
           />
+          {/* ABOUT PAGE */}
           {/* <PageLink
               page="About"
               url="/about"
@@ -168,18 +193,23 @@ const Navbar = (props: NavbarProps) => {
           >
             {/* MENU ITEMS */}
             <div
-              className={`mt-[60px] flex flex-col gap-- text-2xl text-deep-blue`}
+              className={`mt-[60px] flex flex-col items-start text-2xl text-deep-blue`}
             >
-              <button className="inline-flex items-center py-2 px-4 gap-2 font-opensans font-bold ">
-                <Image
-                className={`ml-10`}
-                  src={`/assets/svg/house-solid-yellow.svg`}
-                  alt="file"
-                  width={25}
-                  height={25}
-                />
-                <span className={`ml-2 text-yellow`}>Home</span>
-              </button>
+              <MobilePageLink
+                closeMenu={setIsMenuToggled}
+                page="Home"
+                dimensions={25}
+                iconName="house-solid"
+                url="/"
+              />
+              <MobilePageLink
+                closeMenu={setIsMenuToggled}
+                page="Resume"
+                dimensions={20}
+                iconName="file-solid"
+                url="/General-Resume.pdf"
+                isExternal
+              />
             </div>
           </div>
           {/* CLOSE ICON */}
@@ -188,7 +218,6 @@ const Navbar = (props: NavbarProps) => {
             className={`absolute left-12 top-[18px] rounded-full p-2`}
           >
             <MenuToggle
-              isTopOfPage={isTopOfPage}
               toggle={() => setIsMenuToggled()}
             />
           </motion.div>
