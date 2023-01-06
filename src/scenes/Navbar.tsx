@@ -95,6 +95,7 @@ type NavbarProps = {
 const Navbar = (props: NavbarProps) => {
   const { isTopOfPage } = props;
   const isAboveSmallScreens = useMediaQuery("(min-width: 768px)");
+  const [isMenuToggled , setIsMenuToggled] = useState(false);
   const topColor = isTopOfPage ? "" : "bg-purple";
 
   return (
@@ -141,7 +142,45 @@ const Navbar = (props: NavbarProps) => {
             /> */}
           </div>
         ) : (
-          <></>
+          <button
+            className={`rounded-full bg-blue p-2`}
+            onClick={() => setIsMenuToggled(!isMenuToggled)}
+          >
+            <Image
+              alt="menu-icon"
+              src="/assets/bars-solid.svg"
+              width={10}
+              height={10}
+            />
+          </button>
+
+        )}
+                {/* MOBILE POPUP */}
+        {!isAboveSmallScreens && (
+          <div
+            className={`fixed right-0 bottom-0 h-full w-[300px] bg-blue duration-300 ease-in-out ${
+              isMenuToggled ? "translate-x-0" : "translate-x-full"
+            }`}
+          >
+            {/* CLOSE ICON */}
+            <div className={`flex justify-end p-12`}>
+              <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
+                <Image
+                  alt="close-icon"
+                  src="/assets/xmark-solid.svg"
+                  width={10}
+                  height={10}
+                />
+              </button>
+            </div>
+
+            {/* MENU ITEMS */}
+            <div
+              className={`ml-[33%] flex flex-col gap-10 text-2xl text-deep-blue`}
+            >
+              <p>A</p>
+            </div>
+          </div>
         )}
       </div>
     </nav>
