@@ -8,6 +8,18 @@ import { useCycle } from "framer-motion";
 import type { Cycle } from "framer-motion";
 import MenuToggle from "../components/MenuToggle";
 
+const container = {
+  closed: {},
+  "closed-top": {},
+  open: { transition: { staggerChildren: 0.25 } },
+};
+
+const linkVarient = {
+  closed: { opacity: 0 },
+  "closed-top": { opacity: 0 },
+  open: { opacity: 1, },
+};
+
 interface PageLinkProps {
   page: string;
   url: string;
@@ -20,6 +32,7 @@ interface PageLinkProps {
 
 interface MobilePageLinkProps extends PageLinkProps {
   closeMenu: Cycle;
+  animationState: string;
 }
 
 const PageLink = (props: PageLinkProps) => {
@@ -97,9 +110,11 @@ const PageLink = (props: PageLinkProps) => {
 
 const MobilePageLink = (props: MobilePageLinkProps) => {
   const mobileButton = (
-    <button
+    <motion.button
       className="inline-flex items-center gap-2 py-2 px-4 font-opensans font-bold "
       onClick={() => props.closeMenu()}
+      transition={{ duration: 0.25 }}
+      variants={linkVarient}
     >
       <Image
         className={`ml-10`}
@@ -109,7 +124,7 @@ const MobilePageLink = (props: MobilePageLinkProps) => {
         height={props.dimensions}
       />
       <span className={`ml-2 text-yellow`}>{props.page}</span>
-    </button>
+    </motion.button>
   );
 
   return props.isExternal ? (
@@ -192,14 +207,17 @@ const Navbar = (props: NavbarProps) => {
             }`}
           >
             {/* MENU ITEMS */}
-            <div
+            <motion.div
               className={`mt-[60px] flex flex-col items-start text-2xl text-deep-blue`}
+              animate={animationState}
+              variants={container}
             >
               <MobilePageLink
                 closeMenu={setIsMenuToggled}
                 page="Home"
                 dimensions={25}
                 iconName="house-solid"
+                animationState={animationState}
                 url="/"
               />
               <MobilePageLink
@@ -208,9 +226,10 @@ const Navbar = (props: NavbarProps) => {
                 dimensions={20}
                 iconName="file-solid"
                 url="/General-Resume.pdf"
+                animationState={animationState}
                 isExternal
               />
-            </div>
+            </motion.div>
           </div>
           {/* CLOSE ICON */}
           <motion.div
