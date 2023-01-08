@@ -46,3 +46,5 @@ const MenuToggle = ({ toggle  }: MenuToggleProps) => (
 );
 
 export default MenuToggle;
+
+// Credits: https://codesandbox.io/s/framer-motion-side-menu-mx2rw?from-embed

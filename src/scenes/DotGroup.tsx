@@ -9,21 +9,21 @@ type DotGroupProps = {
 
 const timeToWait = 1000;
 function resolveAfterSeconds(timeToWait: number) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => {
-      resolve('resolved');
+      resolve("resolved");
     }, timeToWait);
   });
 }
 
-
-const DotGroup = ({ selectedPage, setSelectedPage, setCanChange }: DotGroupProps) => {
+const DotGroup = ({
+  selectedPage,
+  setSelectedPage,
+  setCanChange,
+}: DotGroupProps) => {
   const selectedStyles = `relative bg-purple before:absolute before:w-6 before:h-6\
   before:rounded-full before:border-2 before:border-purple before:left-[-50%]\
   before:top-[-50%]`;
-  const change = async <T, >(func: (param: T) => void, to: T) => {
-    func(to);
-  }
 
   return (
     <div className={`fixed top-[60%] right-7 z-50 flex flex-col gap-6`}>
@@ -37,11 +37,13 @@ const DotGroup = ({ selectedPage, setSelectedPage, setCanChange }: DotGroupProps
               selectedPage === lowerCasePage ? selectedStyles : "bg-dark-grey"
             } h-3 w-3 rounded-full`}
             href={`#${lowerCasePage}`}
+            // TODO: Get less hacky solution to ensure that selectedPage doesn't change
+            // due to viewport tracking while AnchorLink is scrolling.
             onClick={async () => {
-              change(setCanChange, false);
-              change(setSelectedPage, lowerCasePage);
+              setCanChange(false);
+              setSelectedPage(lowerCasePage);
               await resolveAfterSeconds(timeToWait);
-              await change(setCanChange, true);
+              setCanChange(true);
             }}
           />
         );

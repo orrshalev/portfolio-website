@@ -19,10 +19,6 @@ const Landing = ({ isInViewport }: Props) => {
   useEffect(() => {
     inViewport ? isInViewport(AnchorPrioritiesMap.home) : isInViewport(-1);
   }, [isInViewport, inViewport]);
-  const beforeIcon = `before:absolute
-          before:-left-2 before:z-[-1]
-          before:mr-5 before:h-full before:w-[75%] before:rounded-full
-          before:border-red before:bg-gradient-rainblue  before:opacity-90`
   return (
     <section
       id="home"

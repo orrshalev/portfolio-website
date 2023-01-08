@@ -18,6 +18,9 @@ type AnchorName = typeof AnchorNames[number];
 export type Order = -1 | 0 | 1 | 2 | 3;
 
 // Make type with keys from AnchorNames and values of AnchorPriorities
+/**
+ * Type that maps anchor names to their order in the page
+ */
 type AnchorOrder = {
   [key in AnchorName]: Order;
 };
@@ -33,6 +36,7 @@ const Home: NextPage = () => {
   const [selectedPage, setSelectedPage] = useState("home");
   const [isTopOfPage, setIsTopOfPage] = useState(true);
 
+  // TODO: Streamline to one hook that can work for other pages
   const [canChange, setCanChange] = useState(true);
   const [isInHome, setIsInHome] = useState<Order>(0);
   const [isInSkills, setIsInSkills] = useState<Order>(0);
@@ -47,6 +51,8 @@ const Home: NextPage = () => {
     return () => window.removeEventListener("scroll", HandleScroll);
   }, []);
 
+  // Checks which sections are currently in viewport and picks top one
+  // to set as selectedPage
   useEffect(() => {
     if (!canChange) return;
 

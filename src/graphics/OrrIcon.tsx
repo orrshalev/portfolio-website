@@ -1,6 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+/**
+ * TSX representation of /assets/image/orr-icon.svg for
+ * the purpose of animating with framer-motion
+ * 
+ * @returns Animated Icon
+ */
 const OrrIcon = () => {
   return (
     <motion.svg

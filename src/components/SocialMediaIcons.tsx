@@ -6,7 +6,6 @@ type IconProps = {
   href: string;
 };
 
-
 const Icon = ({ src, alt, href }: IconProps) => (
   <a
     className={`transition duration-500 hover:opacity-50`}

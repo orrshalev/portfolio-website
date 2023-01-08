@@ -6,6 +6,12 @@ export type WindowDimensions = {
   height: number | undefined;
 };
 
+/**
+ * Get the height and width of an element.
+ * 
+ * @param ref - Ref to the HTML element
+ * @returns Object with width and height properties
+ */
 const useElementDimensions = (ref: RefObject<HTMLElement>) => {
   const [ dimensions, setDimensions ] = useState<WindowDimensions>({ width: ref.current?.offsetWidth, height: ref.current?.offsetHeight });
 

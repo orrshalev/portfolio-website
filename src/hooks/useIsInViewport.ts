@@ -1,6 +1,12 @@
 import type React from "react";
 import { useState, useEffect, useRef } from "react";
 
+/**
+ * Check if an element is in the viewport.
+ *  
+ * @param ref - Ref to the HTML element
+ * @returns Boolean indicating if the element is in the viewport
+ */
 const useIsInViewport = (ref: React.RefObject<HTMLElement>) => {
   const [inViewport, setInViewport] = useState(false);
 

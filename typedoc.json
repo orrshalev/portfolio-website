@@ -1,0 +1,10 @@
+{
+    "entryPoints": [
+        "src"
+    ],
+    "out": "docs/",
+    "entryPointStrategy": "expand",
+    "readme": "README.md",
+    "name": "Portfolio Website Documentation",
+    "tsconfig": "./tsconfig.json",
+}
