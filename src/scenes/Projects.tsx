@@ -32,8 +32,8 @@ const Project = (props: ProjectProps) => {
     <motion.div className={`relative`} variants={projectVarient}>
       <div
         className={`absolute z-30 flex h-full w-full 
-      flex-col items-center justify-center bg-grey text-center text-deep-blue
-      opacity-0 transition duration-500 hover:opacity-90`}
+      flex-col items-center justify-center bg-grey text-center text-deep-blue sm:opacity-0
+      opacity-90 transition duration-500 hover:opacity-90`}
       >
         <p className={`font-playfair text-2xl`}>{title}</p>
         <p className={`mt-7`}>{subtitle}</p>
@@ -50,7 +50,7 @@ const Project = (props: ProjectProps) => {
       <motion.div className={`relative`} variants={projectVarient}>
         <div
           className={`absolute z-30 flex h-full w-full 
-      flex-col items-center justify-center bg-grey text-center text-deep-blue opacity-0 
+      flex-col items-center justify-center bg-grey text-center text-deep-blue opacity-90 sm:opacity-0
       transition duration-500 hover:opacity-90`}
         >
           <p className={`font-playfair text-2xl`}>{title}</p>
